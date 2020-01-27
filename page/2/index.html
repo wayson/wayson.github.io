@@ -79,7 +79,74 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/21/2017-06-20-most-useful-linux-commands/" title="Most useful Linux commands" itemprop="url">Most useful Linux commands</a>
+      <a href="/2017/07/26/enable-mysql-log/" title="Enable MySQL log" itemprop="url">Enable MySQL log</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-26T01:05:36.000Z" itemprop="datePublished"> Published 2017-07-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Sometimes we need to enable the MySQL log to see what SQL scripts have been created by our application. This is a way to enable MySQL log.</p>
+<ol>
+<li>Login to mysql in command line</li>
+<li>Run the scripts below:</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Mac OS */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output = <span class="string">'FILE'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file=<span class="string">'/Applications/MAMP/logs/mysql_general.log'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Linux */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output = <span class="string">'FILE'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file=<span class="string">'/var/log/mysql/mysql_general.log'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>It can be turned off with:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/07/26/enable-mysql-log/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/21/most-useful-linux-commands/" title="Most useful Linux commands" itemprop="url">Most useful Linux commands</a>
   </h1>
   <p class="article-author">By
        
@@ -98,7 +165,7 @@
         
         <p class="article-more-link">
           
-            <a href="/2017/06/21/2017-06-20-most-useful-linux-commands/#more">Read More</a>
+            <a href="/2017/06/21/most-useful-linux-commands/#more">Read More</a>
           
        </p>
     </div>
@@ -119,7 +186,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2017/06/21/2017-06-20-most-useful-linux-commands/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2017/06/21/most-useful-linux-commands/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -139,7 +206,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/30/2017-03-30-php-5.2-to-5.6-comparison/" title="PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation" itemprop="url">PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation</a>
+      <a href="/2017/03/30/php-5.2-to-5.6-comparison/" title="PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation" itemprop="url">PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation</a>
   </h1>
   <p class="article-author">By
        
@@ -167,7 +234,7 @@
         
         <p class="article-more-link">
           
-            <a href="/2017/03/30/2017-03-30-php-5.2-to-5.6-comparison/#more">Read More</a>
+            <a href="/2017/03/30/php-5.2-to-5.6-comparison/#more">Read More</a>
           
        </p>
     </div>
@@ -188,7 +255,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2017/03/30/2017-03-30-php-5.2-to-5.6-comparison/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2017/03/30/php-5.2-to-5.6-comparison/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -208,7 +275,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/23/2017-03-23-time-to-start-writing/" title="Time to start writing" itemprop="url">Time to start writing</a>
+      <a href="/2017/03/23/time-to-start-writing/" title="Time to start writing" itemprop="url">Time to start writing</a>
   </h1>
   <p class="article-author">By
        
@@ -249,7 +316,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2017/03/23/2017-03-23-time-to-start-writing/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2017/03/23/time-to-start-writing/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -288,7 +355,7 @@
 		  
 		
 		  
-			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>2</sup></a></li>
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
 		  
 		
 		  
@@ -313,6 +380,10 @@
 		
 		  
 			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
 		  
 		
 		</ul>

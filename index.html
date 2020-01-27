@@ -79,7 +79,92 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2019/10/07/2019-10-17-Azure-devops-with-React-Native/" title="Azure devops with React Native" itemprop="url">Azure devops with React Native</a>
+      <a href="/2020/01/27/PHP-development-with-docker/" title="PHP development with docker" itemprop="url">PHP development with docker</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2020-01-27T01:57:35.000Z" itemprop="datePublished"> Published 2020-01-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>This is a docker-compose temaplte and file structures for Laravel development.</p>
+<h2 id="Docker-compose-template"><a href="#Docker-compose-template" class="headerlink" title="Docker compose template"></a>Docker compose template</h2><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml</span></span><br><span class="line">version: <span class="string">'3'</span></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  <span class="comment">#PHP Service</span></span><br><span class="line">  app:</span><br><span class="line">    build: ./php</span><br><span class="line">    container_name: app</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    environment:</span><br><span class="line">      SERVICE_NAME: app</span><br><span class="line">      SERVICE_TAGS: dev</span><br><span class="line">    working_dir: /var/www</span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#Redis service</span></span><br><span class="line">  redis:</span><br><span class="line">    image: redis</span><br><span class="line">    container_name: redis</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">"6379:6379"</span></span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#Nginx Service</span></span><br><span class="line">  webserver:</span><br><span class="line">    image: nginx:alpine</span><br><span class="line">    container_name: webserver</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">"8888:80"</span></span><br><span class="line">      - <span class="string">"443:443"</span></span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">      - ./nginx/conf.d/:/etc/nginx/conf.d/</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#MySQL Service</span></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:<span class="number">5.7</span>.<span class="number">22</span></span><br><span class="line">    container_name: db</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">"3306:3306"</span></span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: homestead</span><br><span class="line">      MYSQL_ROOT_PASSWORD: secret</span><br><span class="line">      MYSQL_USER: homestead</span><br><span class="line">      MYSQL_PASSWORD: secret</span><br><span class="line">      SERVICE_TAGS: dev</span><br><span class="line">      SERVICE_NAME: mysql</span><br><span class="line">    volumes:</span><br><span class="line">      - dbdata:/var/lib/mysql/</span><br><span class="line">      - ./mysql/my.cnf:/etc/mysql/my.cnf</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line">  </span><br><span class="line">  <span class="comment">#phpmyadmin</span></span><br><span class="line">  phpmyadmin:</span><br><span class="line">    image: phpmyadmin/phpmyadmin</span><br><span class="line">    container_name: phpmyadmin</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    environment:</span><br><span class="line">     - PMA_ARBITRARY=<span class="number">1</span></span><br><span class="line">     - PMA_HOST=db</span><br><span class="line">     - PMA_PORT=<span class="number">3306</span></span><br><span class="line">     - PMA_USER=homestead</span><br><span class="line">     - PMA_PASSWORD=secret</span><br><span class="line">    ports:</span><br><span class="line">     - <span class="number">8000</span>:<span class="number">80</span></span><br><span class="line">    volumes:</span><br><span class="line">     - /sessions</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#socket.io</span></span><br><span class="line">  socket:</span><br><span class="line">    image: node:<span class="number">10.16</span>.<span class="number">0</span></span><br><span class="line">    container_name: app-socket</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">     - <span class="number">6001</span>:<span class="number">6001</span></span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">    working_dir: /var/www</span><br><span class="line">    command: bash -c <span class="string">"npm install &amp;&amp; node /var/www/socket.dev.js"</span></span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line"><span class="comment">#Docker Networks</span></span><br><span class="line">networks:</span><br><span class="line">  app-network:</span><br><span class="line">    driver: bridge</span><br><span class="line"><span class="comment">#Volumes</span></span><br><span class="line">volumes:</span><br><span class="line">  dbdata:</span><br><span class="line">    driver: local</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="PHP-Stack"><a href="#PHP-Stack" class="headerlink" title="PHP Stack"></a>PHP Stack</h3><p>In folder ./php<br>– ./php/api-queue.conf  // API queue worker<br>– ./php/crontab         // Cron job<br>– ./php/Dockerfile      // Docker image build<br>– ./php/local.ini       // The PHP config<br>– ./php/start.sh        // Start up services</p>
+<ul>
+<li>./php/api-queue.conf<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[program:api-queue]</span><br><span class="line">command&#x3D;php &#x2F;var&#x2F;www&#x2F;artisan queue:work --tries&#x3D;1 --memory&#x3D;384 --timeout&#x3D;600 --env&#x3D;local</span><br><span class="line">user&#x3D;www</span><br><span class="line">numprocs&#x3D;2</span><br><span class="line">process_name&#x3D;%(program_name)s_%(process_num)02d</span><br><span class="line">autostart&#x3D;true</span><br><span class="line">autorestart&#x3D;true</span><br><span class="line">startretries&#x3D;99999</span><br><span class="line">stderr_logfile&#x3D;&#x2F;var&#x2F;log&#x2F;api-queue.log</span><br></pre></td></tr></table></figure></li>
+<li>./php/crontab<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * root &#x2F;usr&#x2F;local&#x2F;bin&#x2F;php  &#x2F;var&#x2F;www&#x2F;artisan schedule:run --env&#x3D;local</span><br></pre></td></tr></table></figure></li>
+<li>./php/Dockerfile<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">FROM php:7.2-fpm-stretch</span><br><span class="line"></span><br><span class="line"># Set working directory</span><br><span class="line">WORKDIR &#x2F;var&#x2F;www</span><br><span class="line"></span><br><span class="line"># Install dependencies and extensions</span><br><span class="line">RUN buildDeps&#x3D;&quot; \</span><br><span class="line">        default-libmysqlclient-dev \</span><br><span class="line">        libbz2-dev \</span><br><span class="line">        libmemcached-dev \</span><br><span class="line">        libsasl2-dev \</span><br><span class="line">    &quot; \</span><br><span class="line">    runtimeDeps&#x3D;&quot; \</span><br><span class="line">        build-essential \</span><br><span class="line">        mysql-client \</span><br><span class="line">        supervisor \</span><br><span class="line">        cron \</span><br><span class="line">        libpng-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        locales \</span><br><span class="line">        zip \</span><br><span class="line">        jpegoptim \</span><br><span class="line">        optipng \</span><br><span class="line">        pngquant \</span><br><span class="line">        gifsicle \</span><br><span class="line">        vim \</span><br><span class="line">        unzip \</span><br><span class="line">        curl \</span><br><span class="line">        git \</span><br><span class="line">        libgmp-dev \</span><br><span class="line">		re2c \</span><br><span class="line">        libmhash-dev \</span><br><span class="line">        file \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">		libicu-dev \</span><br><span class="line">        libjpeg-dev \</span><br><span class="line">		libldap2-dev \</span><br><span class="line">		libmcrypt-dev \</span><br><span class="line">        libmemcachedutil2 \</span><br><span class="line">		libpng-dev \</span><br><span class="line">		libxml2-dev \</span><br><span class="line">    &quot; \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get -y upgrade &amp;&amp; apt-get dist-upgrade &amp;&amp; DEBIAN_FRONTEND&#x3D;noninteractive apt-get install -y $buildDeps $runtimeDeps \</span><br><span class="line">	&amp;&amp; apt-get install -y libpq-dev \</span><br><span class="line">    &amp;&amp; apt-get clean \</span><br><span class="line">	&amp;&amp; ln -s &#x2F;usr&#x2F;include&#x2F;x86_64-linux-gnu&#x2F;gmp.h &#x2F;usr&#x2F;local&#x2F;include&#x2F; \</span><br><span class="line">	&amp;&amp; docker-php-ext-configure gmp \</span><br><span class="line">    &amp;&amp; docker-php-ext-install zip exif pcntl bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql gmp pdo_pgsql pgsql soap zip \</span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir&#x3D;&#x2F;usr&#x2F;include&#x2F; --with-jpeg-dir&#x3D;&#x2F;usr&#x2F;include&#x2F; --with-png-dir&#x3D;&#x2F;usr&#x2F;include&#x2F; \</span><br><span class="line">    &amp;&amp; docker-php-ext-install gd \</span><br><span class="line">    &amp;&amp; docker-php-ext-configure ldap --with-libdir&#x3D;lib&#x2F;x86_64-linux-gnu&#x2F; \</span><br><span class="line">    &amp;&amp; docker-php-ext-install ldap \</span><br><span class="line">    &amp;&amp; docker-php-ext-install exif \</span><br><span class="line">    &amp;&amp; pecl install memcached redis \</span><br><span class="line">    &amp;&amp; docker-php-ext-enable memcached.so redis.so \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove $buildDeps \</span><br><span class="line">    &amp;&amp; rm -r &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists&#x2F;*</span><br><span class="line"></span><br><span class="line"># Install composer</span><br><span class="line">RUN curl -sS https:&#x2F;&#x2F;getcomposer.org&#x2F;installer | php -- --install-dir&#x3D;&#x2F;usr&#x2F;local&#x2F;bin --filename&#x3D;composer</span><br><span class="line"></span><br><span class="line"># Add user for laravel application</span><br><span class="line">RUN groupadd -g 1000 www \</span><br><span class="line">    &amp;&amp; useradd -u 1000 -ms &#x2F;bin&#x2F;bash -g www www</span><br><span class="line"></span><br><span class="line"># Set the cron job</span><br><span class="line">COPY .&#x2F;crontab &#x2F;etc&#x2F;cron.d&#x2F;cool-task</span><br><span class="line">RUN chmod 0644 &#x2F;etc&#x2F;cron.d&#x2F;cool-task &amp;&amp; crontab &#x2F;etc&#x2F;cron.d&#x2F;cool-task &amp;&amp; touch &#x2F;var&#x2F;log&#x2F;cron.log</span><br><span class="line"></span><br><span class="line"># Set the supervisord</span><br><span class="line">COPY .&#x2F;api-queue.conf &#x2F;etc&#x2F;supervisor&#x2F;conf.d&#x2F;api-queue.conf</span><br><span class="line"></span><br><span class="line"># Boost compose install speed</span><br><span class="line">RUN composer global require hirak&#x2F;prestissimo</span><br><span class="line"></span><br><span class="line">COPY .&#x2F;start.sh &#x2F;usr&#x2F;local&#x2F;bin&#x2F;start.sh</span><br><span class="line">RUN cat &#x2F;usr&#x2F;local&#x2F;bin&#x2F;start.sh &amp;&amp; chmod +x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;start.sh</span><br><span class="line"></span><br><span class="line"># Expose port 9000 and start php-fpm server</span><br><span class="line">EXPOSE 9000</span><br><span class="line">CMD service supervisor start &amp;&amp; service cron start &amp;&amp; php-fpm &amp;&amp; cron</span><br></pre></td></tr></table></figure></li>
+<li>./php/local.ini<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize&#x3D;40M</span><br><span class="line">post_max_size&#x3D;40M</span><br></pre></td></tr></table></figure></li>
+<li>./php/start.sh<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line"></span><br><span class="line">chmod 0644 &#x2F;etc&#x2F;cron.d&#x2F;cool-task</span><br><span class="line">crontab &#x2F;etc&#x2F;cron.d&#x2F;cool-task</span><br><span class="line">touch &#x2F;var&#x2F;log&#x2F;cron.log</span><br><span class="line"></span><br><span class="line">service supervisor start</span><br><span class="line">service cron start</span><br><span class="line">php-fpm</span><br><span class="line">cron</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h3><p>./nginx/conf.d/app.conf</p>
+<ul>
+<li>./nginx/conf.d/app.conf<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    index index.php index.html;</span><br><span class="line">    error_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;</span><br><span class="line">    access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log;</span><br><span class="line">    root &#x2F;var&#x2F;www&#x2F;public;</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        try_files $uri &#x3D;404;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(&#x2F;.+)$;</span><br><span class="line">        fastcgi_pass app:9000;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        fastcgi_param PATH_INFO $fastcgi_path_info;</span><br><span class="line">    &#125;</span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        try_files $uri $uri&#x2F; &#x2F;index.php?$query_string;</span><br><span class="line">        gzip_static on;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h3><ul>
+<li>./mysql/my.cnf<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">general_log &#x3D; 1</span><br><span class="line">general_log_file &#x3D; &#x2F;var&#x2F;lib&#x2F;mysql&#x2F;general.log</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Laravel-environment-file"><a href="#Laravel-environment-file" class="headerlink" title="Laravel environment file"></a>Laravel environment file</h3><ul>
+<li>./api_development_env_files/.env<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">APP_ENV&#x3D;local</span><br><span class="line">APP_KEY&#x3D;abcdf</span><br><span class="line">APP_URL&#x3D;http:&#x2F;&#x2F;laravel.api</span><br><span class="line">DB_HOST&#x3D;db</span><br><span class="line">DB_DATABASE&#x3D;homestead</span><br><span class="line">DB_USERNAME&#x3D;homestead</span><br><span class="line">DB_PASSWORD&#x3D;secret</span><br><span class="line">PUSH_ENV&#x3D;development</span><br><span class="line">CACHE_DRIVER&#x3D;redis</span><br><span class="line">SESSION_DRIVER&#x3D;file</span><br><span class="line">BROADCAST_DRIVER&#x3D;redis</span><br><span class="line">REDIS_HOST&#x3D;redis</span><br><span class="line">JWT_SECRET&#x3D;JWT_SECRET</span><br><span class="line">JWT_TTL&#x3D;262800</span><br><span class="line">JWT_TTL_REFRESH&#x3D;262800</span><br><span class="line">ALLOW_ORIGIN&#x3D;*</span><br><span class="line">QUEUE_DRIVER&#x3D;sync #sqs in production, but sync for staging</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DevOps/">DevOps</a>►<a class="article-category-link" href="/categories/DevOps/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2020/01/27/PHP-development-with-docker/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/10/07/Azure-devops-with-React-Native/" title="Azure devops with React Native" itemprop="url">Azure devops with React Native</a>
   </h1>
   <p class="article-author">By
        
@@ -122,7 +207,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2019/10/07/2019-10-17-Azure-devops-with-React-Native/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2019/10/07/Azure-devops-with-React-Native/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -142,7 +227,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/09/01/2018-09-01-modern-php-03-generator/" title="Modern PHP - Generator (3)" itemprop="url">Modern PHP - Generator (3)</a>
+      <a href="/2018/09/01/modern-php-03-generator/" title="Modern PHP - Generator (3)" itemprop="url">Modern PHP - Generator (3)</a>
   </h1>
   <p class="article-author">By
        
@@ -197,7 +282,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2018/09/01/2018-09-01-modern-php-03-generator/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2018/09/01/modern-php-03-generator/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -217,7 +302,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/09/01/2018-09-01-modern-php-02-trait/" title="Modern PHP - Trait (2)" itemprop="url">Modern PHP - Trait (2)</a>
+      <a href="/2018/09/01/modern-php-02-trait/" title="Modern PHP - Trait (2)" itemprop="url">Modern PHP - Trait (2)</a>
   </h1>
   <p class="article-author">By
        
@@ -260,7 +345,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2018/09/01/2018-09-01-modern-php-02-trait/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2018/09/01/modern-php-02-trait/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -280,7 +365,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/09/01/2018-09-01-modern-php-01-namespace/" title="Modern PHP - Namespace (1)" itemprop="url">Modern PHP - Namespace (1)</a>
+      <a href="/2018/09/01/modern-php-01-namespace/" title="Modern PHP - Namespace (1)" itemprop="url">Modern PHP - Namespace (1)</a>
   </h1>
   <p class="article-author">By
        
@@ -326,7 +411,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2018/09/01/2018-09-01-modern-php-01-namespace/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2018/09/01/modern-php-01-namespace/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -346,7 +431,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/09/01/2018-09-01-aws-elasticbeanstalk-first-try/" title="AWS ElasticBeanstalk First try" itemprop="url">AWS ElasticBeanstalk First try</a>
+      <a href="/2018/09/01/aws-elasticbeanstalk-first-try/" title="AWS ElasticBeanstalk First try" itemprop="url">AWS ElasticBeanstalk First try</a>
   </h1>
   <p class="article-author">By
        
@@ -398,7 +483,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2018/09/01/2018-09-01-aws-elasticbeanstalk-first-try/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2018/09/01/aws-elasticbeanstalk-first-try/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -418,7 +503,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/06/24/2018-06-24-npm-commands/" title="npm commands" itemprop="url">npm commands</a>
+      <a href="/2018/06/24/npm-commands/" title="npm commands" itemprop="url">npm commands</a>
   </h1>
   <p class="article-author">By
        
@@ -477,7 +562,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2018/06/24/2018-06-24-npm-commands/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2018/06/24/npm-commands/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -497,7 +582,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/03/10/2018-03-10-C-Generic/" title="C# Generics" itemprop="url">C# Generics</a>
+      <a href="/2018/03/10/C-Generic/" title="C# Generics" itemprop="url">C# Generics</a>
   </h1>
   <p class="article-author">By
        
@@ -517,7 +602,7 @@
         
         <p class="article-more-link">
           
-            <a href="/2018/03/10/2018-03-10-C-Generic/#more">Read More</a>
+            <a href="/2018/03/10/C-Generic/#more">Read More</a>
           
        </p>
     </div>
@@ -538,7 +623,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2018/03/10/2018-03-10-C-Generic/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2018/03/10/C-Generic/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -558,7 +643,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/10/22/2017-10-22-add-swap-space-on-linux/" title="Add swap space on Linux" itemprop="url">Add swap space on Linux</a>
+      <a href="/2017/10/22/add-swap-space-on-linux/" title="Add swap space on Linux" itemprop="url">Add swap space on Linux</a>
   </h1>
   <p class="article-author">By
        
@@ -604,7 +689,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2017/10/22/2017-10-22-add-swap-space-on-linux/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2017/10/22/add-swap-space-on-linux/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -624,7 +709,7 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/08/05/2017-08-05-phpstorm-remote-debug/" title="PHP remote debug" itemprop="url">PHP remote debug</a>
+      <a href="/2017/08/05/phpstorm-remote-debug/" title="PHP remote debug" itemprop="url">PHP remote debug</a>
   </h1>
   <p class="article-author">By
        
@@ -671,74 +756,7 @@
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2017/08/05/2017-08-05-phpstorm-remote-debug/#disqus_thread" class="comments-count-link">Comments</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/07/26/2017-07-26-enable-mysql-log/" title="Enable MySQL log" itemprop="url">Enable MySQL log</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-26T01:05:36.000Z" itemprop="datePublished"> Published 2017-07-26</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Sometimes we need to enable the MySQL log to see what SQL scripts have been created by our application. This is a way to enable MySQL log.</p>
-<ol>
-<li>Login to mysql in command line</li>
-<li>Run the scripts below:</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Mac OS */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output = <span class="string">'FILE'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file=<span class="string">'/Applications/MAMP/logs/mysql_general.log'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Linux */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output = <span class="string">'FILE'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file=<span class="string">'/var/log/mysql/mysql_general.log'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p>It can be turned off with:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2017/07/26/2017-07-26-enable-mysql-log/#disqus_thread" class="comments-count-link">Comments</a>
+		<a href="/2017/08/05/phpstorm-remote-debug/#disqus_thread" class="comments-count-link">Comments</a>
 	
 </div>
 
@@ -777,7 +795,7 @@
 		  
 		
 		  
-			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>2</sup></a></li>
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
 		  
 		
 		  
@@ -802,6 +820,10 @@
 		
 		  
 			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
 		  
 		
 		</ul>

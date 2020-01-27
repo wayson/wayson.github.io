@@ -4,22 +4,22 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Enable MySQL log | Wayson&#39;s github page</title>
+    <title>Add swap space on Linux | Wayson&#39;s github page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Wayson Lin">
     
 
     
-    <meta name="description" content="Sometimes we need to enable the MySQL log to see what SQL scripts have been created by our application. This is a way to enable MySQL log.  Login to mysql in command line Run the scripts below:  1234&#x2F;">
+    <meta name="description" content="If we don’t have enough memory in a Linux machine, we can enable the swap space to increase the “memory”. Check the free memory and free space12345678#check if any swap space enablesudo swapon --show#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Enable MySQL log">
-<meta property="og:url" content="http://wayson.github.io/2017/07/26/2017-07-26-enable-mysql-log/index.html">
+<meta property="og:title" content="Add swap space on Linux">
+<meta property="og:url" content="http://wayson.github.io/2017/10/22/add-swap-space-on-linux/index.html">
 <meta property="og:site_name" content="Wayson&#39;s github page">
-<meta property="og:description" content="Sometimes we need to enable the MySQL log to see what SQL scripts have been created by our application. This is a way to enable MySQL log.  Login to mysql in command line Run the scripts below:  1234&#x2F;">
+<meta property="og:description" content="If we don’t have enough memory in a Linux machine, we can enable the swap space to increase the “memory”. Check the free memory and free space12345678#check if any swap space enablesudo swapon --show#">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2017-07-26T01:05:36.000Z">
-<meta property="article:modified_time" content="2019-10-07T11:02:45.982Z">
+<meta property="article:published_time" content="2017-10-22T11:19:54.000Z">
+<meta property="article:modified_time" content="2019-10-07T11:02:45.983Z">
 <meta property="article:author" content="Wayson Lin">
 <meta name="twitter:card" content="summary">
 
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/07/26/2017-07-26-enable-mysql-log/" title="Enable MySQL log" itemprop="url">Enable MySQL log</a>
+      <a href="/2017/10/22/add-swap-space-on-linux/" title="Add swap space on Linux" itemprop="url">Add swap space on Linux</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
 		
   <p class="article-time">
-    <time datetime="2017-07-26T01:05:36.000Z" itemprop="datePublished"> Published 2017-07-26</time>
+    <time datetime="2017-10-22T11:19:54.000Z" itemprop="datePublished"> Published 2017-10-22</time>
     
   </p>
 </header>
@@ -97,28 +97,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-the-free-memory-and-free-space"><span class="toc-number">1.</span> <span class="toc-text">Check the free memory and free space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-swap-file-and-enable-swap-space"><span class="toc-number">2.</span> <span class="toc-text">Create the swap file and enable swap space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Make-the-swap-file-permanent"><span class="toc-number">3.</span> <span class="toc-text">Make the swap file permanent</span></a></li></ol>
 		
 		</div>
 		
-		<p>Sometimes we need to enable the MySQL log to see what SQL scripts have been created by our application. This is a way to enable MySQL log.</p>
-<ol>
-<li>Login to mysql in command line</li>
-<li>Run the scripts below:</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Mac OS */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output = <span class="string">'FILE'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file=<span class="string">'/Applications/MAMP/logs/mysql_general.log'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+		<p>If we don’t have enough memory in a Linux machine, we can enable the swap space to increase the “memory”.</p>
+<h3 id="Check-the-free-memory-and-free-space"><a href="#Check-the-free-memory-and-free-space" class="headerlink" title="Check the free memory and free space"></a>Check the free memory and free space</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#check if any swap space enable</span></span><br><span class="line">sudo swapon --show</span><br><span class="line"></span><br><span class="line"><span class="comment">#verify there is no active swap</span></span><br><span class="line">free -h</span><br><span class="line"></span><br><span class="line"><span class="comment">#check free space of the hard drive</span></span><br><span class="line">df -h</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Linux */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output = <span class="string">'FILE'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file=<span class="string">'/var/log/mysql/mysql_general.log'</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Create-the-swap-file-and-enable-swap-space"><a href="#Create-the-swap-file-and-enable-swap-space" class="headerlink" title="Create the swap file and enable swap space"></a>Create the swap file and enable swap space</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#create the swap file</span></span><br><span class="line">sudo dd <span class="keyword">if</span>=/dev/zero of=/swapfile count=4096 bs=1MiB</span><br><span class="line"></span><br><span class="line"><span class="comment">#make the file only accessible by root</span></span><br><span class="line">sudo chmod 600 /swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#mark the file as swap space</span></span><br><span class="line">sudo mkswap /swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#enable the swap file</span></span><br><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
 
-<p>It can be turned off with:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>  
+<h3 id="Make-the-swap-file-permanent"><a href="#Make-the-swap-file-permanent" class="headerlink" title="Make the swap file permanent"></a>Make the swap file permanent</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#backup the /etc/fstab file in case anything goes wrong</span></span><br><span class="line">sudo cp /etc/fstab /etc/fstab.bak</span><br><span class="line"></span><br><span class="line"><span class="comment">#add the swap file information to the end</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'/swapfile none swap sw 0 0'</span> | sudo tee -a /etc/fstab</span><br></pre></td></tr></table></figure>
+
+
+<p>That’s all for enabling the swap file on Linux. For more information, we can find more on <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04</a></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
 </div>
 
 
@@ -128,7 +127,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://wayson.github.io/2017/07/26/2017-07-26-enable-mysql-log/" data-title="Enable MySQL log | Wayson&#39;s github page" data-tsina="" class="share clearfix">
+	  <div data-url="http://wayson.github.io/2017/10/22/add-swap-space-on-linux/" data-title="Add swap space on Linux | Wayson&#39;s github page" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -142,18 +141,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/08/05/2017-08-05-phpstorm-remote-debug/" title="PHP remote debug">
+ <a href="/2018/03/10/C-Generic/" title="C# Generics">
   <strong>Previous：</strong><br/>
   <span>
-  PHP remote debug</span>
+  C# Generics</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/06/21/2017-06-20-most-useful-linux-commands/"  title="Most useful Linux commands">
+<a href="/2017/08/05/phpstorm-remote-debug/"  title="PHP remote debug">
  <strong>Next：</strong><br/> 
- <span>Most useful Linux commands
+ <span>PHP remote debug
 </span>
 </a>
 </div>
@@ -175,7 +174,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-the-free-memory-and-free-space"><span class="toc-number">1.</span> <span class="toc-text">Check the free memory and free space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-swap-file-and-enable-swap-space"><span class="toc-number">2.</span> <span class="toc-text">Create the swap file and enable swap space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Make-the-swap-file-permanent"><span class="toc-number">3.</span> <span class="toc-text">Make the swap file permanent</span></a></li></ol>
  
   </div>
 
@@ -196,7 +195,7 @@
 		  
 		
 		  
-			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>2</sup></a></li>
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
 		  
 		
 		  
@@ -221,6 +220,10 @@
 		
 		  
 			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
 		  
 		
 		</ul>
