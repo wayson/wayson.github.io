@@ -1,0 +1,1035 @@
+
+ <!DOCTYPE HTML>
+<html lang="en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Wayson&#39;s github page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wayson Lin">
+    
+
+    
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Wayson&#39;s github page">
+<meta property="og:url" content="http://wayson.github.io/index.html">
+<meta property="og:site_name" content="Wayson&#39;s github page">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Wayson Lin">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Wayson&#39;s github page" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wayson&#39;s github page">Wayson&#39;s github page</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wayson.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2022/12/21/React-Native-tricks/" title="React Native tricks" itemprop="url">React Native tricks</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2022-12-21T09:34:40.000Z" itemprop="datePublished"> Published 2022-12-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>These are the React Native tricks I’ve found in the past 2 years.</p>
+<h1 id="React-navigation-reset-stack-navigator"><a href="#React-navigation-reset-stack-navigator" class="headerlink" title="React navigation reset stack navigator"></a>React navigation reset stack navigator</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** From stack navigator definision **/</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">CardStyleInterpolators</span>,</span><br><span class="line">  createStackNavigator,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;@react-navigation/stack&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Stack</span> = <span class="title function_">createStackNavigator</span>();</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Stack.Navigator</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">screenOptions</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">headerShown:</span> <span class="attr">false</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  &#125;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Stack.Screen</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">name</span>=<span class="string">&quot;ScreenA&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">component</span>=<span class="string">&#123;ScreenA&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">options</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">cardStyleInterpolator:</span> <span class="attr">CardStyleInterpolators.forVerticalIOS</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Stack.Screen</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">name</span>=<span class="string">&quot;ScreenB&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">component</span>=<span class="string">&#123;ScreenB&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">options</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">cardStyleInterpolator:</span> <span class="attr">CardStyleInterpolators.forVerticalIOS</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Stack.Screen</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">name</span>=<span class="string">&quot;ScreenC&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">component</span>=<span class="string">&#123;ScreenC&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">options</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">cardStyleInterpolator:</span> <span class="attr">CardStyleInterpolators.forVerticalIOS</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">gestureEnabled:</span> <span class="attr">false</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">Stack.Navigator</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>The screen navigation order is <strong>ScreenA</strong> -&gt; <strong>ScreenB</strong> -&gt; <strong>ScreenC</strong>. If we want to navigation from ScreenC and reset the stack to SreenA, we can do the following in ScreenC.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">navigation.<span class="title function_">dispatch</span>(</span><br><span class="line">  <span class="title class_">CommonActions</span>.<span class="title function_">reset</span>(&#123;</span><br><span class="line">    <span class="attr">index</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">routes</span>: [&#123;<span class="attr">name</span>: <span class="string">&#x27;ScreenA&#x27;</span>&#125;],</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Use-fetch"><a href="#Use-fetch" class="headerlink" title="Use fetch"></a>Use fetch</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Fetch with timeout **/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchWithTimeout</span>(<span class="params">resource, options</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;timeout = <span class="number">10000</span>&#125; = options; <span class="comment">// 10 seconds</span></span><br><span class="line">  <span class="keyword">const</span> controller = <span class="keyword">new</span> <span class="title class_">AbortController</span>();</span><br><span class="line">  <span class="keyword">const</span> id = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> controller.<span class="title function_">abort</span>(), timeout);</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(resource, &#123;</span><br><span class="line">    ...options,</span><br><span class="line">    <span class="attr">signal</span>: controller.<span class="property">signal</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">clearTimeout</span>(id);</span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** General Graphql calls **/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchGraphQL</span>(<span class="params"></span></span><br><span class="line"><span class="params">  query,</span></span><br><span class="line"><span class="params">  variables,</span></span><br><span class="line"><span class="params">  timeout = <span class="number">10000</span>,</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Fetch data from GitHub&#x27;s GraphQL API:</span></span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetchWithTimeout</span>(<span class="string">&#x27;BASE_API_URL&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="title class_">Authorization</span>: <span class="string">`bearer JWT_TOKEN`</span>,</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">      <span class="attr">query</span>: query,</span><br><span class="line">      variables,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="attr">timeout</span>: timeout,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> jsonResponse = <span class="keyword">await</span> response.<span class="title function_">json</span>();</span><br><span class="line">  <span class="comment">// Get the response as JSON</span></span><br><span class="line">  <span class="keyword">return</span> jsonResponse;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Real call**/</span></span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetchGraphQL</span>(</span><br><span class="line">  <span class="string">`mutation updateSomething(</span></span><br><span class="line"><span class="string">    $test: String!) &#123;</span></span><br><span class="line"><span class="string">    updateSomething(</span></span><br><span class="line"><span class="string">      test: $test</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">  &#125;`</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">test</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="How-to-use-Realm"><a href="#How-to-use-Realm" class="headerlink" title="How to use Realm"></a>How to use Realm</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Base Realm initiator **/</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Realm</span> <span class="keyword">from</span> <span class="string">&#x27;realm&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Test</span> <span class="keyword">from</span> <span class="string">&#x27;../Model/Test&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Realm</span>(&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;DB_NAME&#x27;</span>,</span><br><span class="line">  <span class="attr">schema</span>: [<span class="title class_">Test</span>],</span><br><span class="line">  <span class="attr">schemaVersion</span>: <span class="number">1</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Realm</span> <span class="keyword">from</span> <span class="string">&#x27;realm&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Realm.Object</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> schema = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Test&#x27;</span>,</span><br><span class="line">    <span class="attr">properties</span>: &#123;</span><br><span class="line">      <span class="attr">ID</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;int&#x27;</span>, <span class="attr">default</span>: <span class="number">0</span>&#125;,</span><br><span class="line">      <span class="title class_">Name</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>, <span class="attr">default</span>: <span class="string">&#x27;&#x27;</span>&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">primaryKey</span>: <span class="string">&#x27;ID&#x27;</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getObjectById</span>(<span class="params">DatabaseService, id</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> tests = <span class="title class_">DatabaseService</span>.<span class="title function_">objects</span>(<span class="string">&#x27;Test&#x27;</span>).<span class="title function_">filtered</span>(</span><br><span class="line">    <span class="string">&#x27;ID ==[c] $0&#x27;</span>,</span><br><span class="line">    id,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">if</span> (tests &amp;&amp; tests.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">convertRealmObjectToJson</span>(tests[<span class="number">0</span>], <span class="title class_">Test</span>.<span class="property">schema</span>.<span class="property">properties</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">convertRealmObjectToJson</span>(<span class="params">realmObject, schemaPropertyList</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line">  <span class="keyword">const</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(schemaPropertyList);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> keys) &#123;</span><br><span class="line">    result[key] = realmObject[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="How-to-debug"><a href="#How-to-debug" class="headerlink" title="How to debug"></a>How to debug</h1><p><strong>reactotron-react-native</strong><br><a target="_blank" rel="noopener" href="https://github.com/infinitered/reactotron">https://github.com/infinitered/reactotron</a></p>
+<h1 id="Screen-auto-Rotation"><a href="#Screen-auto-Rotation" class="headerlink" title="Screen auto Rotation"></a>Screen auto Rotation</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Screen Component **/</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ScreenStyles</span> <span class="keyword">from</span> <span class="string">&#x27;./ScreenStyles&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">DeviceScreen</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [styles, setStyles] = <span class="title function_">useState</span>(<span class="title class_">ScreenStyles</span>());</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">onLayout</span>=<span class="string">&#123;event</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">        setStyles(ScreenStyles());</span></span><br><span class="line"><span class="language-xml">      &#125;&#125;&gt;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Style component **/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Do some screen detection and do proper styling with screen specific</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">StyleSheet</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">container</span>: &#123;</span><br><span class="line">      <span class="attr">flex</span>: <span class="number">1</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Tile-swiper-with-dots"><a href="#Tile-swiper-with-dots" class="headerlink" title="Tile swiper with dots"></a>Tile swiper with dots</h1><p><a target="_blank" rel="noopener" href="https://github.com/leecade/react-native-swiper">https://github.com/leecade/react-native-swiper</a><br><a target="_blank" rel="noopener" href="https://github.com/gusgard/react-native-swiper-flatlist">https://github.com/gusgard/react-native-swiper-flatlist</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">View</span>, <span class="title class_">StyleSheet</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">PaginationDots</span>(<span class="params">&#123;length, activeIndex&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;Styles.container&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;[...Array(length).keys()].map((_, i) =&gt; (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">View</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">key</span>=<span class="string">&#123;i&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">style</span>=<span class="string">&#123;[</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">Styles.dot</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &#123;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">backgroundColor:</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">i</span> !== <span class="string">activeIndex</span> ? <span class="attr">Colors.greenLight</span> <span class="attr">:</span> <span class="attr">Colors.charcoalGreen</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &#125;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          ]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        /&gt;</span></span></span><br><span class="line"><span class="language-xml">      ))&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Styles</span> = <span class="title class_">StyleSheet</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">container</span>: &#123;</span><br><span class="line">    <span class="attr">flexDirection</span>: <span class="string">&#x27;row&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">dot</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">borderRadius</span>: <span class="number">10</span> / <span class="number">2</span>,</span><br><span class="line">    <span class="attr">borderColor</span>: <span class="string">&#x27;black&#x27;</span>,</span><br><span class="line">    <span class="attr">borderWidth</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">marginLeft</span>: <span class="number">5</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="LaunchDarkly-integration"><a href="#LaunchDarkly-integration" class="headerlink" title="LaunchDarkly integration"></a>LaunchDarkly integration</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">LDClient</span> <span class="keyword">from</span> <span class="string">&#x27;launchdarkly-react-native-client-sdk&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">LaunchDarklyClient</span> = <span class="keyword">new</span> <span class="title class_">LDClient</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">initLaunchDarkly</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> config = &#123;</span><br><span class="line">      <span class="attr">mobileKey</span>: <span class="variable constant_">PROD_MOBILE_KEY</span>,</span><br><span class="line">      <span class="attr">secondaryMobileKeys</span>: &#123;</span><br><span class="line">        <span class="attr">qa</span>: <span class="variable constant_">QA_MOBILE_KEY</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    user = &#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="variable constant_">USER_KEY</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">LaunchDarklyClient</span>.<span class="title function_">configure</span>(config, user, <span class="number">5.0</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;launchDarkly err&#x27;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getBooleanValue</span> = <span class="keyword">async</span> (<span class="params">environment, key, defaultValue</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (environment === <span class="string">&#x27;QA&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="title class_">LaunchDarklyClient</span>.<span class="title function_">boolVariation</span>(key, defaultValue, <span class="string">&#x27;qa&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="title class_">LaunchDarklyClient</span>.<span class="title function_">boolVariation</span>(key, defaultValue);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="File-sharing"><a href="#File-sharing" class="headerlink" title="File sharing"></a>File sharing</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">RNFetchBlob</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-blob-util&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="variable constant_">RNFS</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Share</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-share&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">shareWithIOS</span> = <span class="keyword">async</span> (<span class="params"></span></span><br><span class="line"><span class="params">  fileUrl,</span></span><br><span class="line"><span class="params">  file_name,</span></span><br><span class="line"><span class="params">  type = <span class="string">&#x27;application/pdf&#x27;</span>,</span></span><br><span class="line"><span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> filePath = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">const</span> configOptions = &#123;</span><br><span class="line">    <span class="attr">fileCache</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="title class_">RNFetchBlob</span>.<span class="property">fs</span>.<span class="property">dirs</span>.<span class="property">DocumentDir</span> + <span class="string">&#x27;/&#x27;</span> + file_name,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title class_">RNFetchBlob</span>.<span class="title function_">config</span>(configOptions).<span class="title function_">fetch</span>(</span><br><span class="line">      <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">      fileUrl,</span><br><span class="line">    );</span><br><span class="line">    filePath = response.<span class="title function_">path</span>();</span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      <span class="attr">type</span>: type,</span><br><span class="line">      <span class="attr">filename</span>: file_name,</span><br><span class="line">      <span class="attr">url</span>: filePath,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">Share</span>.<span class="title function_">open</span>(options);</span><br><span class="line">    <span class="keyword">await</span> <span class="variable constant_">RNFS</span>.<span class="title function_">unlink</span>(filePath);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">shareWithAndroid</span> = <span class="keyword">async</span> (<span class="params"></span></span><br><span class="line"><span class="params">  fileUrl,</span></span><br><span class="line"><span class="params">  file_name,</span></span><br><span class="line"><span class="params">  type = <span class="string">&#x27;application/pdf&#x27;</span>,</span></span><br><span class="line"><span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> filePath = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">const</span> configOptions = &#123;</span><br><span class="line">    <span class="attr">fileCache</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="title class_">RNFetchBlob</span>.<span class="property">fs</span>.<span class="property">dirs</span>.<span class="property">DocumentDir</span> + file_name,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title class_">RNFetchBlob</span>.<span class="title function_">config</span>(configOptions).<span class="title function_">fetch</span>(</span><br><span class="line">      <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">      fileUrl,</span><br><span class="line">    );</span><br><span class="line">    filePath = response.<span class="title function_">path</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> base64Data = <span class="keyword">await</span> response.<span class="title function_">readFile</span>(<span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> base64Url = <span class="string">`data:<span class="subst">$&#123;type&#125;</span>;base64,<span class="subst">$&#123;base64Data&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      <span class="attr">filename</span>: file_name,</span><br><span class="line">      <span class="attr">url</span>: base64Url,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">Share</span>.<span class="title function_">open</span>(options);</span><br><span class="line">    <span class="keyword">await</span> <span class="variable constant_">RNFS</span>.<span class="title function_">unlink</span>(filePath);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Upload-aab-to-PlayStore"><a href="#Upload-aab-to-PlayStore" class="headerlink" title="Upload aab to PlayStore"></a>Upload aab to PlayStore</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** fastlane/AppFile **/</span></span><br><span class="line">json_key_file(<span class="string">&quot;./google-key.json&quot;</span>)</span><br><span class="line">package_name(<span class="string">&quot;ANDROID_APP_ID&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane supply --aab app-release.aab --track alpha</span><br></pre></td></tr></table></figure>
+
+<h1 id="Upload-ipa-to-AppStore"><a href="#Upload-ipa-to-AppStore" class="headerlink" title="Upload ipa to AppStore"></a>Upload ipa to AppStore</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun altool --upload-app --<span class="built_in">type</span> ios --file YOUR_APP.ipa --username <span class="string">&quot;APPLE_ID&quot;</span> --password <span class="string">&quot;APPLE ID PWD&quot;</span></span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/React-Native/">React Native</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2022/12/21/React-Native-tricks/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/01/27/PHP-development-with-docker/" title="PHP development with docker" itemprop="url">PHP development with docker</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2020-01-27T01:57:35.000Z" itemprop="datePublished"> Published 2020-01-27</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>This is a docker-compose temaplte and file structures for Laravel development.</p>
+<h2 id="Docker-compose-template"><a href="#Docker-compose-template" class="headerlink" title="Docker compose template"></a>Docker compose template</h2><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml</span></span><br><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  <span class="comment">#PHP Service</span></span><br><span class="line">  app:</span><br><span class="line">    build: ./php</span><br><span class="line">    image: homestead/php:<span class="number">7.2</span></span><br><span class="line">    container_name: app</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    environment:</span><br><span class="line">      SERVICE_NAME: app</span><br><span class="line">      SERVICE_TAGS: dev</span><br><span class="line">    working_dir: /var/www</span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#Redis service</span></span><br><span class="line">  redis:</span><br><span class="line">    image: redis</span><br><span class="line">    container_name: redis</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;6379:6379&quot;</span></span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#Nginx Service</span></span><br><span class="line">  webserver:</span><br><span class="line">    image: nginx:alpine</span><br><span class="line">    container_name: webserver</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8888:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;443:443&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">      - ./nginx/conf.d/:/etc/nginx/conf.d/</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#MySQL Service</span></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:<span class="number">5.7</span>.<span class="number">22</span></span><br><span class="line">    container_name: db</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: homestead</span><br><span class="line">      MYSQL_ROOT_PASSWORD: secret</span><br><span class="line">      MYSQL_USER: homestead</span><br><span class="line">      MYSQL_PASSWORD: secret</span><br><span class="line">      SERVICE_TAGS: dev</span><br><span class="line">      SERVICE_NAME: mysql</span><br><span class="line">    volumes:</span><br><span class="line">      - dbdata:/var/lib/mysql/</span><br><span class="line">      - ./mysql/my.cnf:/etc/mysql/my.cnf</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line">  </span><br><span class="line">  <span class="comment">#phpmyadmin</span></span><br><span class="line">  phpmyadmin:</span><br><span class="line">    image: phpmyadmin/phpmyadmin</span><br><span class="line">    container_name: phpmyadmin</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    environment:</span><br><span class="line">     - PMA_ARBITRARY=<span class="number">1</span></span><br><span class="line">     - PMA_HOST=db</span><br><span class="line">     - PMA_PORT=<span class="number">3306</span></span><br><span class="line">     - PMA_USER=homestead</span><br><span class="line">     - PMA_PASSWORD=secret</span><br><span class="line">    ports:</span><br><span class="line">     - <span class="number">8000</span>:<span class="number">80</span></span><br><span class="line">    volumes:</span><br><span class="line">     - /sessions</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#socket.io</span></span><br><span class="line">  socket:</span><br><span class="line">    image: node:<span class="number">10.16</span>.<span class="number">0</span></span><br><span class="line">    container_name: app-socket</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">     - <span class="number">6001</span>:<span class="number">6001</span></span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">    working_dir: /var/www</span><br><span class="line">    command: bash -c <span class="string">&quot;npm install &amp;&amp; node /var/www/socket.dev.js&quot;</span></span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line"><span class="comment">#Docker Networks</span></span><br><span class="line">networks:</span><br><span class="line">  app-network:</span><br><span class="line">    driver: bridge</span><br><span class="line"><span class="comment">#Volumes</span></span><br><span class="line">volumes:</span><br><span class="line">  dbdata:</span><br><span class="line">    driver: local</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="PHP-Stack"><a href="#PHP-Stack" class="headerlink" title="PHP Stack"></a>PHP Stack</h3><p>In folder .&#x2F;php<br>– .&#x2F;php&#x2F;api-queue.conf  &#x2F;&#x2F; API queue worker<br>– .&#x2F;php&#x2F;crontab         &#x2F;&#x2F; Cron job<br>– .&#x2F;php&#x2F;Dockerfile      &#x2F;&#x2F; Docker image build<br>– .&#x2F;php&#x2F;local.ini       &#x2F;&#x2F; The PHP config<br>– .&#x2F;php&#x2F;start.sh        &#x2F;&#x2F; Start up services</p>
+<ul>
+<li>.&#x2F;php&#x2F;api-queue.conf<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[program:api-queue]</span><br><span class="line">command=php /var/www/artisan queue:work --tries=1 --memory=384 --timeout=600 --env=local</span><br><span class="line">user=www</span><br><span class="line">numprocs=2</span><br><span class="line">process_name=%(program_name)s_%(process_num)02d</span><br><span class="line">autostart=true</span><br><span class="line">autorestart=true</span><br><span class="line">startretries=99999</span><br><span class="line">stderr_logfile=/var/log/api-queue.log</span><br></pre></td></tr></table></figure></li>
+<li>.&#x2F;php&#x2F;crontab<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* * * * * root /usr/local/bin/php  /var/www/artisan schedule:run --env=local</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>.&#x2F;php&#x2F;Dockerfile<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">FROM php:7.2-fpm-stretch</span><br><span class="line"></span><br><span class="line"># Set working directory</span><br><span class="line">WORKDIR /var/www</span><br><span class="line"></span><br><span class="line"># Install dependencies and extensions</span><br><span class="line">RUN buildDeps=&quot; \</span><br><span class="line">        default-libmysqlclient-dev \</span><br><span class="line">        libbz2-dev \</span><br><span class="line">        libmemcached-dev \</span><br><span class="line">        libsasl2-dev \</span><br><span class="line">    &quot; \</span><br><span class="line">    runtimeDeps=&quot; \</span><br><span class="line">        build-essential \</span><br><span class="line">        mysql-client \</span><br><span class="line">        supervisor \</span><br><span class="line">        cron \</span><br><span class="line">        libpng-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        locales \</span><br><span class="line">        zip \</span><br><span class="line">        jpegoptim \</span><br><span class="line">        optipng \</span><br><span class="line">        pngquant \</span><br><span class="line">        gifsicle \</span><br><span class="line">        vim \</span><br><span class="line">        unzip \</span><br><span class="line">        curl \</span><br><span class="line">        git \</span><br><span class="line">        libgmp-dev \</span><br><span class="line">		re2c \</span><br><span class="line">        libmhash-dev \</span><br><span class="line">        file \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">		libicu-dev \</span><br><span class="line">        libjpeg-dev \</span><br><span class="line">		libldap2-dev \</span><br><span class="line">		libmcrypt-dev \</span><br><span class="line">        libmemcachedutil2 \</span><br><span class="line">		libpng-dev \</span><br><span class="line">		libxml2-dev \</span><br><span class="line">    &quot; \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get -y upgrade &amp;&amp; apt-get dist-upgrade &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \</span><br><span class="line">	&amp;&amp; apt-get install -y libpq-dev \</span><br><span class="line">    &amp;&amp; apt-get clean \</span><br><span class="line">	&amp;&amp; ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \</span><br><span class="line">	&amp;&amp; docker-php-ext-configure gmp \</span><br><span class="line">    &amp;&amp; docker-php-ext-install zip exif pcntl bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql gmp pdo_pgsql pgsql soap zip \</span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install gd \</span><br><span class="line">    &amp;&amp; docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install ldap \</span><br><span class="line">    &amp;&amp; docker-php-ext-install exif \</span><br><span class="line">    &amp;&amp; pecl install memcached redis \</span><br><span class="line">    &amp;&amp; docker-php-ext-enable memcached.so redis.so \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove $buildDeps \</span><br><span class="line">    &amp;&amp; rm -r /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"># Install composer</span><br><span class="line">RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer</span><br><span class="line"></span><br><span class="line"># Add user for laravel application</span><br><span class="line">RUN groupadd -g 1000 www \</span><br><span class="line">    &amp;&amp; useradd -u 1000 -ms /bin/bash -g www www</span><br><span class="line"></span><br><span class="line"># Set the cron job</span><br><span class="line">COPY ./crontab /etc/cron.d/cool-task</span><br><span class="line">RUN chmod 0644 /etc/cron.d/cool-task &amp;&amp; crontab /etc/cron.d/cool-task &amp;&amp; touch /var/log/cron.log</span><br><span class="line"></span><br><span class="line"># Set the supervisord</span><br><span class="line">COPY ./api-queue.conf /etc/supervisor/conf.d/api-queue.conf</span><br><span class="line"></span><br><span class="line"># Boost compose install speed</span><br><span class="line">RUN composer global require hirak/prestissimo</span><br><span class="line"></span><br><span class="line">COPY ./start.sh /usr/local/bin/start.sh</span><br><span class="line">RUN cat /usr/local/bin/start.sh &amp;&amp; chmod +x /usr/local/bin/start.sh</span><br><span class="line"></span><br><span class="line"># Expose port 9000 and start php-fpm server</span><br><span class="line">EXPOSE 9000</span><br><span class="line">CMD service supervisor start &amp;&amp; service cron start &amp;&amp; php-fpm &amp;&amp; cron</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>.&#x2F;php&#x2F;local.ini<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize=40M</span><br><span class="line">post_max_size=40M</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>.&#x2F;php&#x2F;start.sh<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">chmod 0644 /etc/cron.d/cool-task</span><br><span class="line">crontab /etc/cron.d/cool-task</span><br><span class="line">touch /var/log/cron.log</span><br><span class="line"></span><br><span class="line">service supervisor start</span><br><span class="line">service cron start</span><br><span class="line">php-fpm</span><br><span class="line">cron</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h3><p>.&#x2F;nginx&#x2F;conf.d&#x2F;app.conf</p>
+<ul>
+<li>.&#x2F;nginx&#x2F;conf.d&#x2F;app.conf<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    index index.php index.html;</span><br><span class="line">    error_log  /var/log/nginx/error.log;</span><br><span class="line">    access_log /var/log/nginx/access.log;</span><br><span class="line">    root /var/www/public;</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        try_files $uri =404;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">        fastcgi_pass app:9000;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        fastcgi_param PATH_INFO $fastcgi_path_info;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ /index.php?$query_string;</span><br><span class="line">        gzip_static on;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h3><ul>
+<li>.&#x2F;mysql&#x2F;my.cnf<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">general_log = 1</span><br><span class="line">general_log_file = /var/lib/mysql/general.log</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Laravel-environment-file"><a href="#Laravel-environment-file" class="headerlink" title="Laravel environment file"></a>Laravel environment file</h3><ul>
+<li>.&#x2F;api_development_env_files&#x2F;.env<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">APP_ENV=local</span><br><span class="line">APP_KEY=abcdf</span><br><span class="line">APP_URL=http://laravel.api</span><br><span class="line">DB_HOST=db</span><br><span class="line">DB_DATABASE=homestead</span><br><span class="line">DB_USERNAME=homestead</span><br><span class="line">DB_PASSWORD=secret</span><br><span class="line">PUSH_ENV=development</span><br><span class="line">CACHE_DRIVER=redis</span><br><span class="line">SESSION_DRIVER=file</span><br><span class="line">BROADCAST_DRIVER=redis</span><br><span class="line">REDIS_HOST=redis</span><br><span class="line">JWT_SECRET=JWT_SECRET</span><br><span class="line">JWT_TTL=262800</span><br><span class="line">JWT_TTL_REFRESH=262800</span><br><span class="line">ALLOW_ORIGIN=*</span><br><span class="line">QUEUE_DRIVER=sync #sqs in production, but sync for staging</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DevOps/">DevOps</a>►<a class="article-category-link" href="/categories/DevOps/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2020/01/27/PHP-development-with-docker/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/10/07/Azure-devops-with-React-Native/" title="Azure devops with React Native" itemprop="url">Azure devops with React Native</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2019-10-07T11:08:28.000Z" itemprop="datePublished"> Published 2019-10-07</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>We can find a lot of tutorials about how to setup Android CI&#x2F;CD. But it’s hard for us to setup the iOS CI&#x2F;CD. Also It’s expensive to buy a Mac computer to run and build iOS app. As we can find Azure Devops provide MacOS build agent, we can build and publish the iOS app on Azure devops for a lot cheaper prices.</p>
+<p>Here is a Pipeline example of building iOS app on Azure Devops:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pool:</span></span><br><span class="line">  <span class="attr">vmImage:</span> <span class="string">&#x27;macos-latest&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">NodeTool@0</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">versionSpec:</span> <span class="string">&#x27;10.16.0&#x27;</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Install Node.js 10.16.0&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;npm install&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">lint</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Run lint&#x27;</span></span><br><span class="line">  <span class="comment"># iOS build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">InstallAppleCertificate@2</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Install Apple distribution certificate&#x27;</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">certSecureFile:</span> <span class="string">&#x27;IOS_RELEASE_CERTIFICATE.p12&#x27;</span></span><br><span class="line">      <span class="attr">certPwd:</span> <span class="string">$(IOS_RELEASE_P12_PASSWORD)</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">InstallAppleProvisioningProfile@1</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Install distribution provisional profile&#x27;</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">provProfileSecureFile:</span> <span class="string">&#x27;IOS_RELEASE_PROVISION_PROFILE.mobileprovision&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      cd ios</span></span><br><span class="line"><span class="string">      pod install</span></span><br><span class="line"><span class="string">      cd ..</span></span><br><span class="line"><span class="string"></span>    <span class="attr">displayName:</span> <span class="string">&#x27;Install pod&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      npm install -g react-native-cli</span></span><br><span class="line"><span class="string">      react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios</span></span><br><span class="line"><span class="string"></span>    <span class="attr">displayName:</span> <span class="string">&#x27;Bundle ios&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">Xcode@5</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Build IPA for Release&#x27;</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">actions:</span> <span class="string">&#x27;clean archive&#x27;</span></span><br><span class="line">      <span class="attr">scheme:</span> <span class="string">&#x27;IOS_SCHEME_FOUND_IN_XCODE&#x27;</span></span><br><span class="line">      <span class="attr">sdk:</span> <span class="string">&#x27;iphoneos&#x27;</span></span><br><span class="line">      <span class="attr">configuration:</span> <span class="string">&#x27;Release&#x27;</span></span><br><span class="line">      <span class="attr">xcWorkspacePath:</span> <span class="string">&#x27;IOS_WORKSPACE_FILE.xcworkspace&#x27;</span></span><br><span class="line">      <span class="attr">xcodeVersion:</span> <span class="string">&#x27;default&#x27;</span> <span class="comment"># Options: 8, 9, 10, default, specifyPath</span></span><br><span class="line">      <span class="attr">packageApp:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">signingOption:</span> <span class="string">&#x27;manual&#x27;</span> <span class="comment"># Options: nosign, default, manual, auto</span></span><br><span class="line">      <span class="attr">useXcpretty:</span> <span class="literal">true</span> <span class="comment"># Makes it easier to diagnose build failures</span></span><br><span class="line">      <span class="attr">teamId:</span> <span class="string">$(IOS_TEAM_ID)</span></span><br><span class="line">      <span class="attr">provisioningProfileUuid:</span> <span class="string">$(IOS_RELEASE_PROVISIONING_PROFILE_UUID)</span></span><br><span class="line">      <span class="attr">provisioningProfileName:</span> <span class="string">&#x27;THE_PROVISIONING_PROFILE_NAME_IN_APP_STORE&#x27;</span></span><br><span class="line">      <span class="attr">archivePath:</span> <span class="string">ios/build/Products/$(IOS_PROJECT_NAME).xcarchive</span></span><br><span class="line">      <span class="attr">exportMethod:</span> <span class="string">app-store</span></span><br><span class="line">      <span class="attr">exportPath:</span> <span class="string">ios/IPA/distribution</span></span><br><span class="line">      <span class="attr">exportOptions:</span> <span class="string">&#x27;plist&#x27;</span></span><br><span class="line">      <span class="attr">exportOptionsPlist:</span> <span class="string">scripts/ios/exportOptions/exportOptions-dist.plist</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">PublishPipelineArtifact@1</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">$(System.DefaultWorkingDirectory)/ios/IPA</span></span><br><span class="line">      <span class="attr">artifact:</span> <span class="string">YOUR_APP_IOS</span></span><br></pre></td></tr></table></figure>
+
+
+<p>Here is a Pipeline example of building Android app on Azure Devops:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pool:</span></span><br><span class="line">  <span class="attr">vmImage:</span> <span class="string">&#x27;macos-latest&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">NodeTool@0</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">versionSpec:</span> <span class="string">&#x27;10.16.0&#x27;</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Install Node.js 10.16.0&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;npm install&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">lint</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Run lint&#x27;</span></span><br><span class="line">  <span class="comment"># - script: npm run test</span></span><br><span class="line">  <span class="comment">#   displayName: &#x27;Run unit tests&#x27;</span></span><br><span class="line">  <span class="comment"># Android build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">DownloadSecureFile@1</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">android_keystore</span></span><br><span class="line">    <span class="attr">displayName:</span> <span class="string">&#x27;Download Android keystore&#x27;</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">secureFile:</span> <span class="string">&#x27;KEYSTORE_FILE.jks&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">script:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      cd android</span></span><br><span class="line"><span class="string">      ./gradlew clean assembleRelease -PBUILD_NAME=$BUILD_NAME -PBUILD_NUMBER=$ANDROID_BUILD_NUMBER -PANDROID_APP_ID=$ANDROID_APP_ID -PMYAPP_RELEASE_STORE_FILE=$(android_keystore.secureFilePath) -PMYAPP_RELEASE_KEY_ALIAS=$ANDROID_KEY_ALIAS -PMYAPP_RELEASE_STORE_PASSWORD=$ANDROID_KEYSTORE_PASSWORD -PMYAPP_RELEASE_KEY_PASSWORD=$ANDROID_KEY_PASSWORD</span></span><br><span class="line"><span class="string">      ./gradlew bundleRelease -PBUILD_NAME=$BUILD_NAME -PBUILD_NUMBER=$ANDROID_BUILD_NUMBER -PANDROID_APP_ID=$ANDROID_APP_ID -PMYAPP_RELEASE_STORE_FILE=$(android_keystore.secureFilePath) -PMYAPP_RELEASE_KEY_ALIAS=$ANDROID_KEY_ALIAS -PMYAPP_RELEASE_STORE_PASSWORD=$ANDROID_KEYSTORE_PASSWORD -PMYAPP_RELEASE_KEY_PASSWORD=$ANDROID_KEY_PASSWORD</span></span><br><span class="line"><span class="string">      cd ..</span></span><br><span class="line"><span class="string">      mkdir android_outputs</span></span><br><span class="line"><span class="string">      cp -R android/app/build/outputs ./android_outputs</span></span><br><span class="line"><span class="string">      sed &#x27;s/enableSeparateBuildPerCPUArchitecture\ =\ true/enableSeparateBuildPerCPUArchitecture\ =\ false/g&#x27; android/app/build.gradle &gt; ./build.gradle</span></span><br><span class="line"><span class="string">      rm android/app/build.gradle</span></span><br><span class="line"><span class="string">      cp ./build.gradle android/app/build.gradle</span></span><br><span class="line"><span class="string">      cd android</span></span><br><span class="line"><span class="string">      ./gradlew clean assembleRelease -PBUILD_NAME=$BUILD_NAME -PBUILD_NUMBER=$ANDROID_BUILD_NUMBER -PANDROID_APP_ID=$ANDROID_APP_ID -PMYAPP_RELEASE_STORE_FILE=$(android_keystore.secureFilePath) -PMYAPP_RELEASE_KEY_ALIAS=$ANDROID_KEY_ALIAS -PMYAPP_RELEASE_STORE_PASSWORD=$ANDROID_KEYSTORE_PASSWORD -PMYAPP_RELEASE_KEY_PASSWORD=$ANDROID_KEY_PASSWORD</span></span><br><span class="line"><span class="string">      cd ..</span></span><br><span class="line"><span class="string">      cp android/app/build/outputs/apk/release/app-release.apk ./android_outputs/outputs/apk/release/app-release.apk</span></span><br><span class="line"><span class="string"></span>    <span class="attr">displayName:</span> <span class="string">&#x27;Building Android APK and packing distribution bundle&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">task:</span> <span class="string">PublishPipelineArtifact@1</span></span><br><span class="line">    <span class="attr">inputs:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">$(System.DefaultWorkingDirectory)/android_outputs/outputs</span></span><br><span class="line">      <span class="attr">artifact:</span> <span class="string">ANDROID_ARTIFACT</span></span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2019/10/07/Azure-devops-with-React-Native/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/01/modern-php-03-generator/" title="Modern PHP - Generator (3)" itemprop="url">Modern PHP - Generator (3)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-31T23:45:16.000Z" itemprop="datePublished"> Published 2018-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Requirement PHP 5.5+</p>
+<ul>
+<li>Generators are simple iterators.</li>
+<li>Compute and yield iteration values on-demand without commandeering valuable memory.</li>
+<li>Iterate in only one direction—forward</li>
+<li>Can’t iterate the same generator more than once</li>
+</ul>
+<h1 id="Create-generator"><a href="#Create-generator" class="headerlink" title="Create generator"></a>Create generator</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&#x27;value1&#x27;</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&#x27;value2&#x27;</span>;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">&#x27;value3&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="title function_ invoke__">myGenerator</span>() <span class="keyword">as</span> <span class="variable">$yieldedValue</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$yieldedValue</span>, PHP_EOL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">value1</span><br><span class="line">value2</span><br><span class="line">value3</span><br></pre></td></tr></table></figure>
+
+<h1 id="Use-generator"><a href="#Use-generator" class="headerlink" title="Use generator"></a>Use generator</h1><p>Bad to use traditional iterator because it load everything into memory.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRange</span>(<span class="params"><span class="variable">$length</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$dataset</span> = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$length</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="variable">$dataset</span>[] = <span class="variable">$i</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$dataset</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$customRange</span> = <span class="title function_ invoke__">makeRange</span>(<span class="number">1000000</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$customRange</span> <span class="keyword">as</span> <span class="variable">$i</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$i</span>, PHP_EOL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Good to use generator.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRange</span>(<span class="params"><span class="variable">$length</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="variable">$length</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">        <span class="keyword">yield</span> <span class="variable">$i</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="title function_ invoke__">makeRange</span>(<span class="number">1000000</span>) <span class="keyword">as</span> <span class="variable">$i</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$i</span>, PHP_EOL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>CSV generator.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRows</span>(<span class="params"><span class="variable">$file</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$handle</span> = <span class="title function_ invoke__">fopen</span>(<span class="variable">$file</span>, <span class="string">&#x27;rb&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$handle</span> === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="title function_ invoke__">feof</span>(<span class="variable">$handle</span>) === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">yield</span> <span class="title function_ invoke__">fgetcsv</span>(<span class="variable">$handle</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">fclose</span>(<span class="variable">$handle</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">foreach</span> (<span class="title function_ invoke__">getRows</span>(<span class="string">&#x27;data.csv&#x27;</span>) <span class="keyword">as</span> <span class="variable">$row</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">print_r</span>(<span class="variable">$row</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/09/01/modern-php-03-generator/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/01/modern-php-02-trait/" title="Modern PHP - Trait (2)" itemprop="url">Modern PHP - Trait (2)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-31T23:40:16.000Z" itemprop="datePublished"> Published 2018-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Requirement PHP 5.4+</p>
+<h1 id="Create-a-trait"><a href="#Create-a-trait" class="headerlink" title="Create a trait"></a>Create a trait</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Geocodable</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** <span class="doctag">@var</span> string */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$address</span>;</span><br><span class="line">    <span class="comment">/** <span class="doctag">@var</span> \Geocoder\Geocoder */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$geocoder</span>;</span><br><span class="line">    <span class="comment">/** <span class="doctag">@var</span> \Geocoder\Result\Geocoded */</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$geocoderResult</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setGeocoder</span>(<span class="params">\Geocoder\GeocoderInterface <span class="variable">$geocoder</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;geocoder = <span class="variable">$geocoder</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setAddress</span>(<span class="params"><span class="variable">$address</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;address = <span class="variable">$address</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getLatitude</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;geocoderResult) === <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">geocodeAddress</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;geocoderResult-&gt;<span class="title function_ invoke__">getLatitude</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getLongitude</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;geocoderResult) === <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">geocodeAddress</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;geocoderResult-&gt;<span class="title function_ invoke__">getLongitude</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">geocodeAddress</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;geocoderResult = <span class="variable language_">$this</span>-&gt;geocoder-&gt;<span class="title function_ invoke__">geocode</span>(<span class="variable language_">$this</span>-&gt;address);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Use-a-trait"><a href="#Use-a-trait" class="headerlink" title="Use a trait"></a>Use a trait</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RetailStore</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">use</span> <span class="title">Geocodable</span>;</span><br><span class="line">    <span class="comment">// Class implementation goes here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Real-implementation"><a href="#Real-implementation" class="headerlink" title="Real implementation"></a>Real implementation</h1><p>The PHP interpreter copies and pastes traits into class definitions at compile time, and it does not protect against incompatibilities introduced by this action. If your PHP trait assumes a class property or method exists (that is not defined in the trait itself), be sure those properties and methods exist in the appropriate classes.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$geocoderAdapter</span> = <span class="keyword">new</span> \Geocoder\HttpAdapter\<span class="title function_ invoke__">CurlHttpAdapter</span>();</span><br><span class="line"><span class="variable">$geocoderProvider</span> = <span class="keyword">new</span> \Geocoder\Provider\<span class="title function_ invoke__">GoogleMapsProvider</span>(<span class="variable">$geocoderAdapter</span>);</span><br><span class="line"><span class="variable">$geocoder</span> = <span class="keyword">new</span> \Geocoder\<span class="title function_ invoke__">Geocoder</span>(<span class="variable">$geocoderProvider</span>);</span><br><span class="line"><span class="variable">$store</span> = <span class="keyword">new</span> <span class="title class_">RetailStore</span>();</span><br><span class="line"><span class="variable">$store</span>-&gt;<span class="title function_ invoke__">setAddress</span>(<span class="string">&#x27;420 9th Avenue, New York, NY 10001 USA&#x27;</span>);</span><br><span class="line"><span class="variable">$store</span>-&gt;<span class="title function_ invoke__">setGeocoder</span>(<span class="variable">$geocoder</span>);</span><br><span class="line"><span class="variable">$latitude</span> = <span class="variable">$store</span>-&gt;<span class="title function_ invoke__">getLatitude</span>();</span><br><span class="line"><span class="variable">$longitude</span> = <span class="variable">$store</span>-&gt;<span class="title function_ invoke__">getLongitude</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$latitude</span>, <span class="string">&#x27;:&#x27;</span>, <span class="variable">$longitude</span>;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/09/01/modern-php-02-trait/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/01/modern-php-01-namespace/" title="Modern PHP - Namespace (1)" itemprop="url">Modern PHP - Namespace (1)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-31T23:38:16.000Z" itemprop="datePublished"> Published 2018-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h1><h2 id="Delare"><a href="#Delare" class="headerlink" title="Delare"></a>Delare</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Animal</span>;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Animal</span>\<span class="title class_">Dog</span>; </span><br></pre></td></tr></table></figure>
+
+<h2 id="Import-and-Alias"><a href="#Import-and-Alias" class="headerlink" title="Import and Alias"></a>Import and Alias</h2><h3 id="Normal-Import"><a href="#Normal-Import" class="headerlink" title="Normal Import"></a>Normal Import</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Animal</span>\<span class="title">Dog</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Animal</span>\<span class="title">Dog</span> <span class="keyword">as</span> <span class="title">DD</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="function-and-constant"><a href="#function-and-constant" class="headerlink" title="function and constant"></a>function and constant</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PHP 5.6+ only: Import a function</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">func</span> <span class="title">Namespace</span>\<span class="title">functionName</span>;</span><br><span class="line"><span class="title function_ invoke__">functionName</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// PHP 5.6+ only: Import a constant</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">constant</span> <span class="title">Namespace</span>\<span class="title">CONST_NAME</span>;</span><br><span class="line"><span class="keyword">echo</span> CONST_NAME;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Helpful-tips"><a href="#Helpful-tips" class="headerlink" title="Helpful tips"></a>Helpful tips</h3><h4 id="Multiple-imports"><a href="#Multiple-imports" class="headerlink" title="Multiple imports"></a>Multiple imports</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Don&#x27;t do this</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Request</span>,</span><br><span class="line">  <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Response</span>,</span><br><span class="line">  <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Cookie</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//It should be</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Request</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Response</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">HttpFoundation</span>\<span class="title">Cookie</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Multiple-namespace-in-one-file"><a href="#Multiple-namespace-in-one-file" class="headerlink" title="Multiple namespace in one file"></a>Multiple namespace in one file</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">// <span class="title class_">Declare</span> <span class="title class_">classes</span>, <span class="title class_">interfaces</span>, <span class="title class_">functions</span>, <span class="title class_">and</span> <span class="title class_">constants</span> <span class="title class_">here</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">namespace</span> <span class="title class_">Bar</span> &#123;</span><br><span class="line">// <span class="title class_">Declare</span> <span class="title class_">classes</span>, <span class="title class_">interfaces</span>, <span class="title class_">functions</span>, <span class="title class_">and</span> <span class="title class_">constants</span> <span class="title class_">here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Global-namespace"><a href="#Global-namespace" class="headerlink" title="Global namespace"></a>Global namespace</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">My</span>\<span class="title class_">App</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">\Exception</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/09/01/modern-php-01-namespace/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/01/aws-elasticbeanstalk-first-try/" title="AWS ElasticBeanstalk First try" itemprop="url">AWS ElasticBeanstalk First try</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-31T23:36:16.000Z" itemprop="datePublished"> Published 2018-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Why-AWS-Elastic-Beanstalk"><a href="#Why-AWS-Elastic-Beanstalk" class="headerlink" title="Why AWS Elastic Beanstalk?"></a>Why AWS Elastic Beanstalk?</h1><p>A single server instance is good for development but it would be bad for production environment because it’s unable to scale horizontally. Also it’s a waste of money to let a giant instance run 7x24 while we just have a few rushing hours in a day. Therefore, we need to be able to scale horizontally base on the network traffic, server cpu utilization percentage etc.</p>
+<h1 id="How-to-use-Elastic-Beanstalk"><a href="#How-to-use-Elastic-Beanstalk" class="headerlink" title="How to use Elastic Beanstalk?"></a>How to use Elastic Beanstalk?</h1><p>I will create the Elastic Beanstalk environment by a cloudformation template and make specific server instance change in project artifact’s .ebextension config files.</p>
+<h2 id="Cloudformation-Template"><a href="#Cloudformation-Template" class="headerlink" title="Cloudformation Template"></a>Cloudformation Template</h2><p>Let’s begin with a snippet.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">AWSTemplateFormatVersion:</span> <span class="string">&#x27;2010-09-09&#x27;</span></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">sampleApplication:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::Application</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="comment">################################### </span></span><br><span class="line">      <span class="comment"># Specify the Application name here</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="attr">ApplicationName:</span> <span class="string">Application</span> <span class="string">Name(XXXXX)</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">Elastic</span> <span class="string">Beanstalk</span> <span class="string">Sample</span> <span class="string">Application</span></span><br><span class="line">  <span class="attr">sampleApplicationVersion:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::ApplicationVersion</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">ApplicationName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplication</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">ElasticBeanstalk</span> <span class="string">Sample</span> <span class="string">Application</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">SourceBundle:</span></span><br><span class="line">        <span class="comment">###################################</span></span><br><span class="line">        <span class="comment"># Specify the artifact&#x27;s location</span></span><br><span class="line">        <span class="comment">###################################</span></span><br><span class="line">        <span class="attr">S3Bucket:</span> <span class="type">!Sub</span> <span class="string">&quot;elasticbeanstalk-samples-$&#123;AWS::Region&#125;&quot;</span></span><br><span class="line">        <span class="attr">S3Key:</span> <span class="string">php-newsample-app.zip</span></span><br><span class="line">  <span class="attr">sampleConfigurationTemplate:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::ConfigurationTemplate</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">ApplicationName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplication</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">ElasticBeanstalk</span> <span class="string">Sample</span> <span class="string">Configuration</span> <span class="string">Template</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="comment"># Specify the solution stack name</span></span><br><span class="line">      <span class="comment"># The list of all solution stack can be found from https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="attr">SolutionStackName:</span> <span class="string">64bit</span> <span class="string">Amazon</span> <span class="string">Linux</span> <span class="number">2018.03 </span><span class="string">v2.8.1</span> <span class="string">running</span> <span class="string">PHP</span> <span class="number">7.0</span></span><br><span class="line">      <span class="attr">OptionSettings:</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="comment"># Specify the option settings of environment and platform</span></span><br><span class="line">      <span class="comment"># - Environment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html</span></span><br><span class="line">      <span class="comment"># - Platform specific options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-specific.html</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Namespace:</span> <span class="string">aws:autoscaling:asg</span></span><br><span class="line">        <span class="attr">OptionName:</span> <span class="string">MinSize</span></span><br><span class="line">        <span class="attr">Value:</span> <span class="string">&#x27;2&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Namespace:</span> <span class="string">aws:autoscaling:asg</span></span><br><span class="line">        <span class="attr">OptionName:</span> <span class="string">MaxSize</span></span><br><span class="line">        <span class="attr">Value:</span> <span class="string">&#x27;6&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Namespace:</span> <span class="string">aws:elasticbeanstalk:environment</span></span><br><span class="line">        <span class="attr">OptionName:</span> <span class="string">EnvironmentType</span></span><br><span class="line">        <span class="attr">Value:</span> <span class="string">LoadBalanced</span></span><br><span class="line">  <span class="attr">sampleEnvironment:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::Environment</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">ApplicationName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplication</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">ElasticBeanstalk</span> <span class="string">Sample</span> <span class="string">Environment</span></span><br><span class="line">      <span class="attr">TemplateName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleConfigurationTemplate</span></span><br><span class="line">      <span class="attr">VersionLabel:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplicationVersion</span></span><br></pre></td></tr></table></figure>
+
+<p>NOTE: If we need to have immutable auto scaling, aws:elasticbeanstalk:healthreporting:system -&gt; System Type should be set as “enhanced”.</p>
+<h2 id="ebextensions"><a href="#ebextensions" class="headerlink" title=".ebextensions"></a>.ebextensions</h2><p>How about the software and the script deployment in EC2 instance? How can we refer and use the environment variables in ebextensions? Here is an example</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Install loggly</span></span><br><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="attr">yum:</span></span><br><span class="line">    <span class="attr">rsyslog-gnutls:</span> []</span><br><span class="line"></span><br><span class="line"><span class="attr">files:</span></span><br><span class="line">  <span class="string">&quot;/tmp/configure-apache.sh&quot;</span> <span class="string">:</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">&quot;000755&quot;</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">source:</span> <span class="string">https://www.loggly.com/install/configure-apache.sh</span></span><br><span class="line"></span><br><span class="line">  <span class="string">&quot;/opt/elasticbeanstalk/hooks/appdeploy/post/90_reindex_elastic_cache.sh&quot;</span> <span class="string">:</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">&quot;000755&quot;</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      #!/usr/bin/env bash</span></span><br><span class="line"><span class="string">      /tmp/configure-apache.sh -a `&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;LogglySubDomain&quot;&#125;&#125;` -u `&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;LogglyUserName&quot;&#125;&#125;` -p `&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;LogglyPassword&quot;&#125;&#125;`</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="attr">yum:</span></span><br><span class="line">    <span class="attr">newrelic-php5:</span> []</span><br><span class="line">  <span class="attr">rpm:</span></span><br><span class="line">    <span class="attr">newrelic:</span> <span class="string">http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="attr">files:</span></span><br><span class="line">  <span class="string">&quot;/tmp/update_nr_application_name.sh&quot;</span> <span class="string">:</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">&quot;000744&quot;</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      #!/bin/bash</span></span><br><span class="line"><span class="string">      sed -i &#x27;s/^\;\?newrelic\.appname\s*=.*/newrelic.appname = &quot;`&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;NewRelicAppName&quot;&#125;&#125;`&quot;/&#x27; /etc/php.d/newrelic.ini</span></span><br><span class="line"><span class="string">      sed -i &#x27;s/^\;\?newrelic\.appname\s*=.*/newrelic.appname = &quot;`&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;NewRelicAppName&quot;&#125;&#125;`&quot;/&#x27; /etc/php-7.0.d/newrelic.ini</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"></span><br><span class="line"><span class="attr">commands:</span></span><br><span class="line">  <span class="attr">01_configure_new_relic:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">newrelic-install</span> <span class="string">install</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">      <span class="attr">NR_INSTALL_SILENT:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">NR_INSTALL_KEY:</span> </span><br><span class="line">        <span class="attr">&quot;Fn::GetOptionSetting&quot;:</span></span><br><span class="line">          <span class="attr">Namespace:</span> <span class="string">&quot;aws:elasticbeanstalk:application:environment&quot;</span></span><br><span class="line">          <span class="attr">OptionName:</span> <span class="string">NewRelicLicenseKey</span></span><br><span class="line">  <span class="attr">02_set_application_name:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">sudo</span> <span class="string">bash</span> <span class="string">/tmp/update_nr_application_name.sh</span></span><br><span class="line">  <span class="attr">03_stop_daemon:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">sudo</span> <span class="string">/etc/init.d/newrelic-daemon</span> <span class="string">stop</span></span><br></pre></td></tr></table></figure>
+
+<p>Note: </p>
+<ul>
+<li>If we want to contain characters like ‘|’ in commands, the command should be placed inside a single quote.</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/09/01/aws-elasticbeanstalk-first-try/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/06/24/npm-commands/" title="npm commands" itemprop="url">npm commands</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-06-24T09:00:12.000Z" itemprop="datePublished"> Published 2018-06-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Update-npm"><a href="#Update-npm" class="headerlink" title="Update npm"></a>Update npm</h1><p>npm i -g npm@VERSION</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g npm@5.5.1</span><br></pre></td></tr></table></figure>
+
+<h1 id="Create-package-json"><a href="#Create-package-json" class="headerlink" title="Create package.json"></a>Create package.json</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create package.json with interactive command prompts</span></span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create package.json without any command prompts</span></span><br><span class="line">npm init --<span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="List-existing-packages"><a href="#List-existing-packages" class="headerlink" title="List existing packages"></a>List existing packages</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List dependency tree</span></span><br><span class="line">npm list</span><br><span class="line"></span><br><span class="line"><span class="comment"># List dependency tree with depth=0</span></span><br><span class="line">npm list --depth=0</span><br><span class="line"></span><br><span class="line"><span class="comment"># View package detail information</span></span><br><span class="line">npm view mongoose</span><br><span class="line"></span><br><span class="line"><span class="comment"># View package dependencies</span></span><br><span class="line">npm view mongoose dependencies</span><br><span class="line"></span><br><span class="line"><span class="comment"># View package all versions</span></span><br><span class="line">npm view mongoose versions</span><br></pre></td></tr></table></figure>
+
+<h1 id="Versioning"><a href="#Versioning" class="headerlink" title="Versioning"></a>Versioning</h1><p>Semantic format: Major.Minor.Patch</p>
+<ul>
+<li><p>Caret Version<br>^4.13.6&#x3D;4.x</p>
+</li>
+<li><p>Tilde Version<br>~1.8.3&#x3D;1.8.x</p>
+</li>
+</ul>
+<h1 id="Update-local-package"><a href="#Update-local-package" class="headerlink" title="Update local package"></a>Update local package</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check outdated packages</span></span><br><span class="line">npm outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check global outdated packages</span></span><br><span class="line">npm -g outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># Update packages</span></span><br><span class="line">npm update</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-npm-check-updates-to-update-packages"><a href="#Use-npm-check-updates-to-update-packages" class="headerlink" title="Use npm-check-updates to update packages"></a>Use npm-check-updates to update packages</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. Install npm-check-updates globally</span></span><br><span class="line">npm i -g npm-check-updates</span><br><span class="line"><span class="comment"># 2. Check which packages can be updated</span></span><br><span class="line">npm-check-updates</span><br><span class="line"><span class="comment"># Or</span></span><br><span class="line">ncu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Update package.json</span></span><br><span class="line">ncu -u</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. Install dependencies</span></span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h1 id="Install-dev-dependencies"><a href="#Install-dev-dependencies" class="headerlink" title="Install dev dependencies"></a>Install dev dependencies</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jshint --save-dev</span><br></pre></td></tr></table></figure>
+
+<h1 id="Uninstall-package"><a href="#Uninstall-package" class="headerlink" title="Uninstall package"></a>Uninstall package</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un mongoose</span><br></pre></td></tr></table></figure>
+
+<h1 id="Publish-own-packages-to-npm"><a href="#Publish-own-packages-to-npm" class="headerlink" title="Publish own packages to npm"></a>Publish own packages to npm</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> lion-lib</span><br><span class="line"><span class="built_in">cd</span> lion-lib</span><br><span class="line">npm init --<span class="built_in">yes</span></span><br><span class="line">npm login</span><br><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="/categories/JavaScript/NodeJS/">NodeJS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/06/24/npm-commands/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/03/10/C-Generic/" title="C# Generics" itemprop="url">C# Generics</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-03-10T10:39:47.000Z" itemprop="datePublished"> Published 2018-03-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Why-do-we-need-it"><a href="#Why-do-we-need-it" class="headerlink" title="Why do we need it?"></a>Why do we need it?</h1><p>Generic allows developers create classes or methods work with any data type.</p>
+<p>Let’s take a look at the following example.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List.cs</span></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Generic</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NotImplementedException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> <span class="keyword">this</span>[<span class="built_in">int</span> index]</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NotImplementedException();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2018/03/10/C-Generic/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C#</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/03/10/C-Generic/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/22/add-swap-space-on-linux/" title="Add swap space on Linux" itemprop="url">Add swap space on Linux</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-22T11:19:54.000Z" itemprop="datePublished"> Published 2017-10-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>If we don’t have enough memory in a Linux machine, we can enable the swap space to increase the “memory”.</p>
+<h3 id="Check-the-free-memory-and-free-space"><a href="#Check-the-free-memory-and-free-space" class="headerlink" title="Check the free memory and free space"></a>Check the free memory and free space</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#check if any swap space enable</span></span><br><span class="line">sudo swapon --show</span><br><span class="line"></span><br><span class="line"><span class="comment">#verify there is no active swap</span></span><br><span class="line">free -h</span><br><span class="line"></span><br><span class="line"><span class="comment">#check free space of the hard drive</span></span><br><span class="line"><span class="built_in">df</span> -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-the-swap-file-and-enable-swap-space"><a href="#Create-the-swap-file-and-enable-swap-space" class="headerlink" title="Create the swap file and enable swap space"></a>Create the swap file and enable swap space</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#create the swap file</span></span><br><span class="line">sudo <span class="built_in">dd</span> <span class="keyword">if</span>=/dev/zero of=/swapfile count=4096 bs=1MiB</span><br><span class="line"></span><br><span class="line"><span class="comment">#make the file only accessible by root</span></span><br><span class="line">sudo <span class="built_in">chmod</span> 600 /swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#mark the file as swap space</span></span><br><span class="line">sudo mkswap /swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#enable the swap file</span></span><br><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
+
+<h3 id="Make-the-swap-file-permanent"><a href="#Make-the-swap-file-permanent" class="headerlink" title="Make the swap file permanent"></a>Make the swap file permanent</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#backup the /etc/fstab file in case anything goes wrong</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/fstab /etc/fstab.bak</span><br><span class="line"></span><br><span class="line"><span class="comment">#add the swap file information to the end</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | sudo <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure>
+
+
+<p>That’s all for enabling the swap file on Linux. For more information, we can find more on <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/22/add-swap-space-on-linux/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C#">C#<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/NodeJS/" title="NodeJS">NodeJS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/keepfool" target="_blank" title="CN Blog VueJS">CN Blog VueJS</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://aboutreact.com" target="_blank" title="About React Native">About React Native</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://overreacted.io" target="_blank" title="Overreacted">Overreacted</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Wayson. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wayson317@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2022 
+		
+		<a href="/about" target="_blank" title="Wayson Lin">Wayson Lin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>
