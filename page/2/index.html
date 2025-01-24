@@ -32,7 +32,7 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 6.0.0"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
   <body>
     <header>
@@ -238,7 +238,7 @@
 <h3 id="Make-the-swap-file-permanent"><a href="#Make-the-swap-file-permanent" class="headerlink" title="Make the swap file permanent"></a>Make the swap file permanent</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#backup the /etc/fstab file in case anything goes wrong</span></span><br><span class="line">sudo <span class="built_in">cp</span> /etc/fstab /etc/fstab.bak</span><br><span class="line"></span><br><span class="line"><span class="comment">#add the swap file information to the end</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | sudo <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure>
 
 
-<p>That’s all for enabling the swap file on Linux. For more information, we can find more on <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04</a></p>
+<p>That’s all for enabling the swap file on Linux. For more information, we can find more on <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04</a></p>
 
         
         
@@ -305,7 +305,7 @@
 <p><strong>NOTE</strong>: After the installation, it will output the path of debug.so from the command line. Save it and paste into zend_extension to the configuration setting in next step.</p>
 <h3 id="Paste-the-following-code-to-php-ini"><a href="#Paste-the-following-code-to-php-ini" class="headerlink" title="Paste the following code to php.ini"></a>Paste the following code to php.ini</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">zend_extension=/usr/lib/php/20151012/xdebug.so</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_handler=dbgp</span><br><span class="line">xdebug.idekey=PHPSTORM</span><br><span class="line">xdebug.remote_port=9000</span><br><span class="line">xdebug.remote_log=/var/log/xdebug.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="Follow-the-this-link-to-enable-xdebug-on-phpstorm"><a href="#Follow-the-this-link-to-enable-xdebug-on-phpstorm" class="headerlink" title="Follow the this link to enable xdebug on phpstorm:"></a>Follow the this link to enable xdebug on phpstorm:</h3><p><a target="_blank" rel="noopener" href="https://confluence.jetbrains.com/display/PhpStorm/Remote+debugging+in+PhpStorm+via+SSH+tunnel">https://confluence.jetbrains.com/display/PhpStorm/Remote+debugging+in+PhpStorm+via+SSH+tunnel</a></p>
+<h3 id="Follow-the-this-link-to-enable-xdebug-on-phpstorm"><a href="#Follow-the-this-link-to-enable-xdebug-on-phpstorm" class="headerlink" title="Follow the this link to enable xdebug on phpstorm:"></a>Follow the this link to enable xdebug on phpstorm:</h3><p><a href="https://confluence.jetbrains.com/display/PhpStorm/Remote+debugging+in+PhpStorm+via+SSH+tunnel">https://confluence.jetbrains.com/display/PhpStorm/Remote+debugging+in+PhpStorm+via+SSH+tunnel</a></p>
 
         
         
