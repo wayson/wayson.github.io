@@ -1,0 +1,955 @@
+
+ <!DOCTYPE HTML>
+<html lang="en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Wayson&#39;s github page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wayson Lin">
+    
+
+    
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Wayson&#39;s github page">
+<meta property="og:url" content="http://wayson.github.io/page/2/index.html">
+<meta property="og:site_name" content="Wayson&#39;s github page">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Wayson Lin">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Wayson&#39;s github page" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wayson&#39;s github page">Wayson&#39;s github page</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wayson.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/09/01/aws-elasticbeanstalk-first-try/" title="AWS ElasticBeanstalk First try" itemprop="url">AWS ElasticBeanstalk First try</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-08-31T23:36:16.000Z" itemprop="datePublished"> Published 2018-09-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Why-AWS-Elastic-Beanstalk"><a href="#Why-AWS-Elastic-Beanstalk" class="headerlink" title="Why AWS Elastic Beanstalk?"></a>Why AWS Elastic Beanstalk?</h1><p>A single server instance is good for development but it would be bad for production environment because it’s unable to scale horizontally. Also it’s a waste of money to let a giant instance run 7x24 while we just have a few rushing hours in a day. Therefore, we need to be able to scale horizontally base on the network traffic, server cpu utilization percentage etc.</p>
+<h1 id="How-to-use-Elastic-Beanstalk"><a href="#How-to-use-Elastic-Beanstalk" class="headerlink" title="How to use Elastic Beanstalk?"></a>How to use Elastic Beanstalk?</h1><p>I will create the Elastic Beanstalk environment by a cloudformation template and make specific server instance change in project artifact’s .ebextension config files.</p>
+<h2 id="Cloudformation-Template"><a href="#Cloudformation-Template" class="headerlink" title="Cloudformation Template"></a>Cloudformation Template</h2><p>Let’s begin with a snippet.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">AWSTemplateFormatVersion:</span> <span class="string">&#x27;2010-09-09&#x27;</span></span><br><span class="line"><span class="attr">Resources:</span></span><br><span class="line">  <span class="attr">sampleApplication:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::Application</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="comment">################################### </span></span><br><span class="line">      <span class="comment"># Specify the Application name here</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="attr">ApplicationName:</span> <span class="string">Application</span> <span class="string">Name(XXXXX)</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">Elastic</span> <span class="string">Beanstalk</span> <span class="string">Sample</span> <span class="string">Application</span></span><br><span class="line">  <span class="attr">sampleApplicationVersion:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::ApplicationVersion</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">ApplicationName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplication</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">ElasticBeanstalk</span> <span class="string">Sample</span> <span class="string">Application</span> <span class="string">Version</span></span><br><span class="line">      <span class="attr">SourceBundle:</span></span><br><span class="line">        <span class="comment">###################################</span></span><br><span class="line">        <span class="comment"># Specify the artifact&#x27;s location</span></span><br><span class="line">        <span class="comment">###################################</span></span><br><span class="line">        <span class="attr">S3Bucket:</span> <span class="type">!Sub</span> <span class="string">&quot;elasticbeanstalk-samples-$&#123;AWS::Region&#125;&quot;</span></span><br><span class="line">        <span class="attr">S3Key:</span> <span class="string">php-newsample-app.zip</span></span><br><span class="line">  <span class="attr">sampleConfigurationTemplate:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::ConfigurationTemplate</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">ApplicationName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplication</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">ElasticBeanstalk</span> <span class="string">Sample</span> <span class="string">Configuration</span> <span class="string">Template</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="comment"># Specify the solution stack name</span></span><br><span class="line">      <span class="comment"># The list of all solution stack can be found from https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="attr">SolutionStackName:</span> <span class="string">64bit</span> <span class="string">Amazon</span> <span class="string">Linux</span> <span class="number">2018.03 </span><span class="string">v2.8.1</span> <span class="string">running</span> <span class="string">PHP</span> <span class="number">7.0</span></span><br><span class="line">      <span class="attr">OptionSettings:</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="comment"># Specify the option settings of environment and platform</span></span><br><span class="line">      <span class="comment"># - Environment options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html</span></span><br><span class="line">      <span class="comment"># - Platform specific options: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-specific.html</span></span><br><span class="line">      <span class="comment">###################################</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Namespace:</span> <span class="string">aws:autoscaling:asg</span></span><br><span class="line">        <span class="attr">OptionName:</span> <span class="string">MinSize</span></span><br><span class="line">        <span class="attr">Value:</span> <span class="string">&#x27;2&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Namespace:</span> <span class="string">aws:autoscaling:asg</span></span><br><span class="line">        <span class="attr">OptionName:</span> <span class="string">MaxSize</span></span><br><span class="line">        <span class="attr">Value:</span> <span class="string">&#x27;6&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">Namespace:</span> <span class="string">aws:elasticbeanstalk:environment</span></span><br><span class="line">        <span class="attr">OptionName:</span> <span class="string">EnvironmentType</span></span><br><span class="line">        <span class="attr">Value:</span> <span class="string">LoadBalanced</span></span><br><span class="line">  <span class="attr">sampleEnvironment:</span></span><br><span class="line">    <span class="attr">Type:</span> <span class="string">AWS::ElasticBeanstalk::Environment</span></span><br><span class="line">    <span class="attr">Properties:</span></span><br><span class="line">      <span class="attr">ApplicationName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplication</span></span><br><span class="line">      <span class="attr">Description:</span> <span class="string">AWS</span> <span class="string">ElasticBeanstalk</span> <span class="string">Sample</span> <span class="string">Environment</span></span><br><span class="line">      <span class="attr">TemplateName:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleConfigurationTemplate</span></span><br><span class="line">      <span class="attr">VersionLabel:</span></span><br><span class="line">        <span class="attr">Ref:</span> <span class="string">sampleApplicationVersion</span></span><br></pre></td></tr></table></figure>
+
+<p>NOTE: If we need to have immutable auto scaling, aws:elasticbeanstalk:healthreporting:system -&gt; System Type should be set as “enhanced”.</p>
+<h2 id="ebextensions"><a href="#ebextensions" class="headerlink" title=".ebextensions"></a>.ebextensions</h2><p>How about the software and the script deployment in EC2 instance? How can we refer and use the environment variables in ebextensions? Here is an example</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Install loggly</span></span><br><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="attr">yum:</span></span><br><span class="line">    <span class="attr">rsyslog-gnutls:</span> []</span><br><span class="line"></span><br><span class="line"><span class="attr">files:</span></span><br><span class="line">  <span class="string">&quot;/tmp/configure-apache.sh&quot;</span> <span class="string">:</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">&quot;000755&quot;</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">source:</span> <span class="string">https://www.loggly.com/install/configure-apache.sh</span></span><br><span class="line"></span><br><span class="line">  <span class="string">&quot;/opt/elasticbeanstalk/hooks/appdeploy/post/90_reindex_elastic_cache.sh&quot;</span> <span class="string">:</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">&quot;000755&quot;</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      #!/usr/bin/env bash</span></span><br><span class="line"><span class="string">      /tmp/configure-apache.sh -a `&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;LogglySubDomain&quot;&#125;&#125;` -u `&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;LogglyUserName&quot;&#125;&#125;` -p `&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;LogglyPassword&quot;&#125;&#125;`</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="attr">yum:</span></span><br><span class="line">    <span class="attr">newrelic-php5:</span> []</span><br><span class="line">  <span class="attr">rpm:</span></span><br><span class="line">    <span class="attr">newrelic:</span> <span class="string">http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm</span></span><br><span class="line"></span><br><span class="line"><span class="attr">files:</span></span><br><span class="line">  <span class="string">&quot;/tmp/update_nr_application_name.sh&quot;</span> <span class="string">:</span></span><br><span class="line">    <span class="attr">mode:</span> <span class="string">&quot;000744&quot;</span></span><br><span class="line">    <span class="attr">owner:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      #!/bin/bash</span></span><br><span class="line"><span class="string">      sed -i &#x27;s/^\;\?newrelic\.appname\s*=.*/newrelic.appname = &quot;`&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;NewRelicAppName&quot;&#125;&#125;`&quot;/&#x27; /etc/php.d/newrelic.ini</span></span><br><span class="line"><span class="string">      sed -i &#x27;s/^\;\?newrelic\.appname\s*=.*/newrelic.appname = &quot;`&#123;&quot;Fn::GetOptionSetting&quot;: &#123;&quot;Namespace&quot;: &quot;aws:elasticbeanstalk:application:environment&quot;, &quot;OptionName&quot;: &quot;NewRelicAppName&quot;&#125;&#125;`&quot;/&#x27; /etc/php-7.0.d/newrelic.ini</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"></span><br><span class="line"><span class="attr">commands:</span></span><br><span class="line">  <span class="attr">01_configure_new_relic:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">newrelic-install</span> <span class="string">install</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">      <span class="attr">NR_INSTALL_SILENT:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">NR_INSTALL_KEY:</span> </span><br><span class="line">        <span class="attr">&quot;Fn::GetOptionSetting&quot;:</span></span><br><span class="line">          <span class="attr">Namespace:</span> <span class="string">&quot;aws:elasticbeanstalk:application:environment&quot;</span></span><br><span class="line">          <span class="attr">OptionName:</span> <span class="string">NewRelicLicenseKey</span></span><br><span class="line">  <span class="attr">02_set_application_name:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">sudo</span> <span class="string">bash</span> <span class="string">/tmp/update_nr_application_name.sh</span></span><br><span class="line">  <span class="attr">03_stop_daemon:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">sudo</span> <span class="string">/etc/init.d/newrelic-daemon</span> <span class="string">stop</span></span><br></pre></td></tr></table></figure>
+
+<p>Note: </p>
+<ul>
+<li>If we want to contain characters like ‘|’ in commands, the command should be placed inside a single quote.</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/09/01/aws-elasticbeanstalk-first-try/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/06/24/npm-commands/" title="npm commands" itemprop="url">npm commands</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-06-24T09:00:12.000Z" itemprop="datePublished"> Published 2018-06-24</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Update-npm"><a href="#Update-npm" class="headerlink" title="Update npm"></a>Update npm</h1><p>npm i -g npm@VERSION</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g npm@5.5.1</span><br></pre></td></tr></table></figure>
+
+<h1 id="Create-package-json"><a href="#Create-package-json" class="headerlink" title="Create package.json"></a>Create package.json</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create package.json with interactive command prompts</span></span><br><span class="line">npm init</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create package.json without any command prompts</span></span><br><span class="line">npm init --<span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="List-existing-packages"><a href="#List-existing-packages" class="headerlink" title="List existing packages"></a>List existing packages</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># List dependency tree</span></span><br><span class="line">npm list</span><br><span class="line"></span><br><span class="line"><span class="comment"># List dependency tree with depth=0</span></span><br><span class="line">npm list --depth=0</span><br><span class="line"></span><br><span class="line"><span class="comment"># View package detail information</span></span><br><span class="line">npm view mongoose</span><br><span class="line"></span><br><span class="line"><span class="comment"># View package dependencies</span></span><br><span class="line">npm view mongoose dependencies</span><br><span class="line"></span><br><span class="line"><span class="comment"># View package all versions</span></span><br><span class="line">npm view mongoose versions</span><br></pre></td></tr></table></figure>
+
+<h1 id="Versioning"><a href="#Versioning" class="headerlink" title="Versioning"></a>Versioning</h1><p>Semantic format: Major.Minor.Patch</p>
+<ul>
+<li><p>Caret Version<br>^4.13.6&#x3D;4.x</p>
+</li>
+<li><p>Tilde Version<br>~1.8.3&#x3D;1.8.x</p>
+</li>
+</ul>
+<h1 id="Update-local-package"><a href="#Update-local-package" class="headerlink" title="Update local package"></a>Update local package</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check outdated packages</span></span><br><span class="line">npm outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check global outdated packages</span></span><br><span class="line">npm -g outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># Update packages</span></span><br><span class="line">npm update</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-npm-check-updates-to-update-packages"><a href="#Use-npm-check-updates-to-update-packages" class="headerlink" title="Use npm-check-updates to update packages"></a>Use npm-check-updates to update packages</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. Install npm-check-updates globally</span></span><br><span class="line">npm i -g npm-check-updates</span><br><span class="line"><span class="comment"># 2. Check which packages can be updated</span></span><br><span class="line">npm-check-updates</span><br><span class="line"><span class="comment"># Or</span></span><br><span class="line">ncu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. Update package.json</span></span><br><span class="line">ncu -u</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. Install dependencies</span></span><br><span class="line">npm i</span><br></pre></td></tr></table></figure>
+
+<h1 id="Install-dev-dependencies"><a href="#Install-dev-dependencies" class="headerlink" title="Install dev dependencies"></a>Install dev dependencies</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jshint --save-dev</span><br></pre></td></tr></table></figure>
+
+<h1 id="Uninstall-package"><a href="#Uninstall-package" class="headerlink" title="Uninstall package"></a>Uninstall package</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm un mongoose</span><br></pre></td></tr></table></figure>
+
+<h1 id="Publish-own-packages-to-npm"><a href="#Publish-own-packages-to-npm" class="headerlink" title="Publish own packages to npm"></a>Publish own packages to npm</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> lion-lib</span><br><span class="line"><span class="built_in">cd</span> lion-lib</span><br><span class="line">npm init --<span class="built_in">yes</span></span><br><span class="line">npm login</span><br><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>►<a class="article-category-link" href="/categories/JavaScript/NodeJS/">NodeJS</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/06/24/npm-commands/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/03/10/C-Generic/" title="C# Generics" itemprop="url">C# Generics</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2018-03-10T10:39:47.000Z" itemprop="datePublished"> Published 2018-03-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h1 id="Why-do-we-need-it"><a href="#Why-do-we-need-it" class="headerlink" title="Why do we need it?"></a>Why do we need it?</h1><p>Generic allows developers create classes or methods work with any data type.</p>
+<p>Let’s take a look at the following example.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//List.cs</span></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Generic</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NotImplementedException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">int</span> <span class="keyword">this</span>[<span class="built_in">int</span> index]</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NotImplementedException();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2018/03/10/C-Generic/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/C/">C#</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2018/03/10/C-Generic/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/22/add-swap-space-on-linux/" title="Add swap space on Linux" itemprop="url">Add swap space on Linux</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-22T11:19:54.000Z" itemprop="datePublished"> Published 2017-10-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>If we don’t have enough memory in a Linux machine, we can enable the swap space to increase the “memory”.</p>
+<h3 id="Check-the-free-memory-and-free-space"><a href="#Check-the-free-memory-and-free-space" class="headerlink" title="Check the free memory and free space"></a>Check the free memory and free space</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#check if any swap space enable</span></span><br><span class="line"><span class="built_in">sudo</span> swapon --show</span><br><span class="line"></span><br><span class="line"><span class="comment">#verify there is no active swap</span></span><br><span class="line">free -h</span><br><span class="line"></span><br><span class="line"><span class="comment">#check free space of the hard drive</span></span><br><span class="line"><span class="built_in">df</span> -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-the-swap-file-and-enable-swap-space"><a href="#Create-the-swap-file-and-enable-swap-space" class="headerlink" title="Create the swap file and enable swap space"></a>Create the swap file and enable swap space</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#create the swap file</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">dd</span> <span class="keyword">if</span>=/dev/zero of=/swapfile count=4096 bs=1MiB</span><br><span class="line"></span><br><span class="line"><span class="comment">#make the file only accessible by root</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chmod</span> 600 /swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#mark the file as swap space</span></span><br><span class="line"><span class="built_in">sudo</span> mkswap /swapfile</span><br><span class="line"></span><br><span class="line"><span class="comment">#enable the swap file</span></span><br><span class="line"><span class="built_in">sudo</span> swapon /swapfile</span><br></pre></td></tr></table></figure>
+
+<h3 id="Make-the-swap-file-permanent"><a href="#Make-the-swap-file-permanent" class="headerlink" title="Make the swap file permanent"></a>Make the swap file permanent</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#backup the /etc/fstab file in case anything goes wrong</span></span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">cp</span> /etc/fstab /etc/fstab.bak</span><br><span class="line"></span><br><span class="line"><span class="comment">#add the swap file information to the end</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure>
+
+
+<p>That’s all for enabling the swap file on Linux. For more information, we can find more on <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/10/22/add-swap-space-on-linux/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/08/05/phpstorm-remote-debug/" title="PHP remote debug" itemprop="url">PHP remote debug</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-08-05T01:05:36.000Z" itemprop="datePublished"> Published 2017-08-05</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>I’ve seen quite a lot of PHP developers don’t have PHP debugger installed on development enviornment. Instead of debugging PHP code line by line, we’re fond of echo and print the results on the web page to find the errors.</p>
+<p>It would be hard in the past because we don’t have good PHP IDE until we have PHPStorm. Unfortunately PHPStorm doesn’t have debugger installed in the environment and we have to install it by ourselves.</p>
+<h3 id="Download-xdebug"><a href="#Download-xdebug" class="headerlink" title="Download xdebug"></a>Download xdebug</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/xdebug/xdebug.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="Install-XDebug"><a href="#Install-XDebug" class="headerlink" title="Install XDebug"></a>Install XDebug</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> xdebug</span><br><span class="line">phpize</span><br><span class="line"><span class="built_in">sudo</span> ./configure –enable-xdebug</span><br><span class="line"><span class="built_in">sudo</span> make</span><br><span class="line"><span class="built_in">sudo</span> make install</span><br></pre></td></tr></table></figure>
+
+<p><strong>NOTE</strong>: After the installation, it will output the path of debug.so from the command line. Save it and paste into zend_extension to the configuration setting in next step.</p>
+<h3 id="Paste-the-following-code-to-php-ini"><a href="#Paste-the-following-code-to-php-ini" class="headerlink" title="Paste the following code to php.ini"></a>Paste the following code to php.ini</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">zend_extension=/usr/lib/php/20151012/xdebug.so</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_handler=dbgp</span><br><span class="line">xdebug.idekey=PHPSTORM</span><br><span class="line">xdebug.remote_port=9000</span><br><span class="line">xdebug.remote_log=/var/log/xdebug.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Follow-the-this-link-to-enable-xdebug-on-phpstorm"><a href="#Follow-the-this-link-to-enable-xdebug-on-phpstorm" class="headerlink" title="Follow the this link to enable xdebug on phpstorm:"></a>Follow the this link to enable xdebug on phpstorm:</h3><p><a href="https://confluence.jetbrains.com/display/PhpStorm/Remote+debugging+in+PhpStorm+via+SSH+tunnel">https://confluence.jetbrains.com/display/PhpStorm/Remote+debugging+in+PhpStorm+via+SSH+tunnel</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/08/05/phpstorm-remote-debug/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/07/26/enable-mysql-log/" title="Enable MySQL log" itemprop="url">Enable MySQL log</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-26T01:05:36.000Z" itemprop="datePublished"> Published 2017-07-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>Sometimes we need to enable the MySQL log to see what SQL scripts have been created by our application. This is a way to enable MySQL log.</p>
+<ol>
+<li>Login to mysql in command line</li>
+<li>Run the scripts below:</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Mac OS */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output <span class="operator">=</span> <span class="string">&#x27;FILE&#x27;</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file<span class="operator">=</span><span class="string">&#x27;/Applications/MAMP/logs/mysql_general.log&#x27;</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* For Linux */</span></span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> log_output <span class="operator">=</span> <span class="string">&#x27;FILE&#x27;</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log_file<span class="operator">=</span><span class="string">&#x27;/var/log/mysql/mysql_general.log&#x27;</span>;</span><br><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>It can be turned off with:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">global</span> general_log <span class="operator">=</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/07/26/enable-mysql-log/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/21/most-useful-linux-commands/" title="Most useful Linux commands" itemprop="url">Most useful Linux commands</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-21T01:05:36.000Z" itemprop="datePublished"> Published 2017-06-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>There are thousands of linux commands available. But there are only a few commands we use for most of the time. As a result, we don’t have to learn and recite all the commands. Of course we can check the manuals by “man” or google it but it’s not a fast way for me to search them all the time. Therefore, I list them all together as a cheat sheet.</p>
+<h2 id="System-info"><a href="#System-info" class="headerlink" title="System info"></a>System info</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">date</span>    <span class="comment">## show the current date and time</span></span><br><span class="line">cal     <span class="comment">## show this month&#x27;s calendar</span></span><br><span class="line"><span class="built_in">uptime</span>  <span class="comment">## show current uptime</span></span><br><span class="line">w       <span class="comment">## display who is online</span></span><br><span class="line"><span class="built_in">whoami</span>  <span class="comment">## who you are logged in as</span></span><br><span class="line">finger user   <span class="comment">## display information about user</span></span><br><span class="line"><span class="built_in">uname</span> -a    <span class="comment">## show kernel information</span></span><br><span class="line">man `<span class="built_in">command</span>`   <span class="comment">## show the manual for command</span></span><br><span class="line"><span class="built_in">df</span>      <span class="comment">## show disk usage</span></span><br><span class="line"><span class="built_in">du</span>      <span class="comment">## show directory</span></span><br><span class="line">free    <span class="comment">## show memory and swap usage</span></span><br><span class="line">whereis app   <span class="comment">## show possible location of app</span></span><br><span class="line"><span class="built_in">which</span> app   <span class="comment">## show which app will be run by default</span></span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/06/21/most-useful-linux-commands/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Linux/">Linux</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/06/21/most-useful-linux-commands/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/30/php-5.2-to-5.6-comparison/" title="PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation" itemprop="url">PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-29T19:09:00.000Z" itemprop="datePublished"> Published 2017-03-30</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>I’ve been working on PHP for more than 5 years time. As far as I can find, there are still a lot of companies using PHP with version lower than 5.6. Especially some e-commerce stores like Woocommerce, Magento 1.x. Most of the owners won’t upgrade PHP because the systems are still working fine. There’s no way to spend money on something unnecessary. As a result, developers should keep the PHP version in mind when we need to build new feature or do some bug fixes for the old system.</p>
+<p>The current version of PHP is 7.1. But there are more than 50% of users are still using PHP 5.x[1] and some PHP versions are end of officially supported [2].</p>
+<p>This article will introduce the new features from PHP 5.2 to PHP 5.6.</p>
+<ul>
+<li>PHP 5.2 before: autoload, PDO and MySQLi, type of constraints</li>
+<li>PHP 5.2: JSON support</li>
+<li>PHP 5.3: Abandoned features, anonymous functions, new magic methods, namespace, late static binding, Heredoc, Nowdoc, const, ternary operator, Phar</li>
+<li>PHP 5.4: Short Open Tag, new syntax of array, Traits, built-in web server, small features changes</li>
+<li>PHP 5.5: yield, list() in foreach, feature changes</li>
+<li>PHP 5.6: constant scalar expressions, Variadic functions and argument unpacking, namespace enhancement</li>
+</ul>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2017/03/30/php-5.2-to-5.6-comparison/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/03/30/php-5.2-to-5.6-comparison/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/23/time-to-start-writing/" title="Time to start writing" itemprop="url">Time to start writing</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-22T23:05:00.000Z" itemprop="datePublished"> Published 2017-03-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>I’ve been a software developer for more than 5 years time. Over the past few years, I have greatly improved my development  and communication skills. As the technologies keep updating days by days, I always worry my programming knowledge won’t be enough. Sometimes I doubt if I have fallen behind the industry. </p>
+<p>In order to find out what I should learn next for my career, I am in favour of joinging the technical meetups as much as I can. As far as I can find from the conversations during the meetups, I realised I had to get in the habit of writing blogs occasionally to record what I have learnt from work. Because it would be much easier to find out the same question from my blog than google it again.</p>
+<p>I believe I can learn more from writing technical blogs than keep reading the new books with nothing else. </p>
+<p>Therefore, I should keep posting at least once per week. Keep fighting. (^o^)</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Diary/">Diary</a>
+</div>
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2017/03/23/time-to-start-writing/#disqus_thread" class="comments-count-link">Comments</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C#">C#<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/GPT/" title="GPT">GPT<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/NodeJS/" title="NodeJS">NodeJS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Tips/" title="Tips">Tips<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Snippets/" title="Snippets">Snippets<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/One-Liners/" title="One-Liners">One-Liners<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/keepfool" target="_blank" title="CN Blog VueJS">CN Blog VueJS</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://aboutreact.com" target="_blank" title="About React Native">About React Native</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://overreacted.io" target="_blank" title="Overreacted">Overreacted</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Wayson. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wayson317@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2025 
+		
+		<a href="/about" target="_blank" title="Wayson Lin">Wayson Lin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

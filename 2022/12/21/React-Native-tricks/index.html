@@ -1,0 +1,562 @@
+
+ <!DOCTYPE HTML>
+<html lang="en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>React Native tricks | Wayson&#39;s github page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wayson Lin">
+    
+
+    
+    <meta name="description" content="These are the React Native tricks I’ve found in the past 2 years. React navigation reset stack navigator1234567891011121314151617181920212223242526272829303132333435&#x2F;** From stack navigator definision">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native tricks">
+<meta property="og:url" content="http://wayson.github.io/2022/12/21/React-Native-tricks/index.html">
+<meta property="og:site_name" content="Wayson&#39;s github page">
+<meta property="og:description" content="These are the React Native tricks I’ve found in the past 2 years. React navigation reset stack navigator1234567891011121314151617181920212223242526272829303132333435&#x2F;** From stack navigator definision">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-21T09:34:40.000Z">
+<meta property="article:modified_time" content="2025-03-19T10:23:11.427Z">
+<meta property="article:author" content="Wayson Lin">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Wayson&#39;s github page" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wayson&#39;s github page">Wayson&#39;s github page</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wayson.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2022/12/21/React-Native-tricks/" title="React Native tricks" itemprop="url">React Native tricks</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2022-12-21T09:34:40.000Z" itemprop="datePublished"> Published 2022-12-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#React-navigation-reset-stack-navigator"><span class="toc-number">1.</span> <span class="toc-text">React navigation reset stack navigator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-fetch"><span class="toc-number">2.</span> <span class="toc-text">Use fetch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-use-Realm"><span class="toc-number">3.</span> <span class="toc-text">How to use Realm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-debug"><span class="toc-number">4.</span> <span class="toc-text">How to debug</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Screen-auto-Rotation"><span class="toc-number">5.</span> <span class="toc-text">Screen auto Rotation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tile-swiper-with-dots"><span class="toc-number">6.</span> <span class="toc-text">Tile swiper with dots</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LaunchDarkly-integration"><span class="toc-number">7.</span> <span class="toc-text">LaunchDarkly integration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File-sharing"><span class="toc-number">8.</span> <span class="toc-text">File sharing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-aab-to-PlayStore"><span class="toc-number">9.</span> <span class="toc-text">Upload aab to PlayStore</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-ipa-to-AppStore"><span class="toc-number">10.</span> <span class="toc-text">Upload ipa to AppStore</span></a></li></ol>
+		
+		</div>
+		
+		<p>These are the React Native tricks I’ve found in the past 2 years.</p>
+<h1 id="React-navigation-reset-stack-navigator"><a href="#React-navigation-reset-stack-navigator" class="headerlink" title="React navigation reset stack navigator"></a>React navigation reset stack navigator</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** From stack navigator definision **/</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">CardStyleInterpolators</span>,</span><br><span class="line">  createStackNavigator,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;@react-navigation/stack&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Stack</span> = <span class="title function_">createStackNavigator</span>();</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Stack.Navigator</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">screenOptions</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">headerShown:</span> <span class="attr">false</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  &#125;&#125;&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Stack.Screen</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">name</span>=<span class="string">&quot;ScreenA&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">component</span>=<span class="string">&#123;ScreenA&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">options</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">cardStyleInterpolator:</span> <span class="attr">CardStyleInterpolators.forVerticalIOS</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Stack.Screen</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">name</span>=<span class="string">&quot;ScreenB&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">component</span>=<span class="string">&#123;ScreenB&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">options</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">cardStyleInterpolator:</span> <span class="attr">CardStyleInterpolators.forVerticalIOS</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Stack.Screen</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">name</span>=<span class="string">&quot;ScreenC&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">component</span>=<span class="string">&#123;ScreenC&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">options</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">cardStyleInterpolator:</span> <span class="attr">CardStyleInterpolators.forVerticalIOS</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">gestureEnabled:</span> <span class="attr">false</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  /&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">Stack.Navigator</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>The screen navigation order is <strong>ScreenA</strong> -&gt; <strong>ScreenB</strong> -&gt; <strong>ScreenC</strong>. If we want to navigation from ScreenC and reset the stack to SreenA, we can do the following in ScreenC.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">navigation.<span class="title function_">dispatch</span>(</span><br><span class="line">  <span class="title class_">CommonActions</span>.<span class="title function_">reset</span>(&#123;</span><br><span class="line">    <span class="attr">index</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">routes</span>: [&#123;<span class="attr">name</span>: <span class="string">&#x27;ScreenA&#x27;</span>&#125;],</span><br><span class="line">  &#125;),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Use-fetch"><a href="#Use-fetch" class="headerlink" title="Use fetch"></a>Use fetch</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Fetch with timeout **/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchWithTimeout</span>(<span class="params">resource, options</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;timeout = <span class="number">10000</span>&#125; = options; <span class="comment">// 10 seconds</span></span><br><span class="line">  <span class="keyword">const</span> controller = <span class="keyword">new</span> <span class="title class_">AbortController</span>();</span><br><span class="line">  <span class="keyword">const</span> id = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> controller.<span class="title function_">abort</span>(), timeout);</span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetch</span>(resource, &#123;</span><br><span class="line">    ...options,</span><br><span class="line">    <span class="attr">signal</span>: controller.<span class="property">signal</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">clearTimeout</span>(id);</span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** General Graphql calls **/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchGraphQL</span>(<span class="params"></span></span><br><span class="line"><span class="params">  query,</span></span><br><span class="line"><span class="params">  variables,</span></span><br><span class="line"><span class="params">  timeout = <span class="number">10000</span>,</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// Fetch data from GitHub&#x27;s GraphQL API:</span></span><br><span class="line">  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetchWithTimeout</span>(<span class="string">&#x27;BASE_API_URL&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="title class_">Authorization</span>: <span class="string">`bearer JWT_TOKEN`</span>,</span><br><span class="line">      <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;</span><br><span class="line">      <span class="attr">query</span>: query,</span><br><span class="line">      variables,</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="attr">timeout</span>: timeout,</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> jsonResponse = <span class="keyword">await</span> response.<span class="title function_">json</span>();</span><br><span class="line">  <span class="comment">// Get the response as JSON</span></span><br><span class="line">  <span class="keyword">return</span> jsonResponse;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Real call**/</span></span><br><span class="line"><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">fetchGraphQL</span>(</span><br><span class="line">  <span class="string">`mutation updateSomething(</span></span><br><span class="line"><span class="string">    $test: String!) &#123;</span></span><br><span class="line"><span class="string">    updateSomething(</span></span><br><span class="line"><span class="string">      test: $test</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">  &#125;`</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">test</span>: <span class="string">&#x27;test&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="How-to-use-Realm"><a href="#How-to-use-Realm" class="headerlink" title="How to use Realm"></a>How to use Realm</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Base Realm initiator **/</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Realm</span> <span class="keyword">from</span> <span class="string">&#x27;realm&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Test</span> <span class="keyword">from</span> <span class="string">&#x27;../Model/Test&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> <span class="title class_">Realm</span>(&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;DB_NAME&#x27;</span>,</span><br><span class="line">  <span class="attr">schema</span>: [<span class="title class_">Test</span>],</span><br><span class="line">  <span class="attr">schemaVersion</span>: <span class="number">1</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Realm</span> <span class="keyword">from</span> <span class="string">&#x27;realm&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Test</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Realm.Object</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> schema = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;Test&#x27;</span>,</span><br><span class="line">    <span class="attr">properties</span>: &#123;</span><br><span class="line">      <span class="attr">ID</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;int&#x27;</span>, <span class="attr">default</span>: <span class="number">0</span>&#125;,</span><br><span class="line">      <span class="title class_">Name</span>: &#123;<span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>, <span class="attr">default</span>: <span class="string">&#x27;&#x27;</span>&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">primaryKey</span>: <span class="string">&#x27;ID&#x27;</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getObjectById</span>(<span class="params">DatabaseService, id</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> tests = <span class="title class_">DatabaseService</span>.<span class="title function_">objects</span>(<span class="string">&#x27;Test&#x27;</span>).<span class="title function_">filtered</span>(</span><br><span class="line">    <span class="string">&#x27;ID ==[c] $0&#x27;</span>,</span><br><span class="line">    id,</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">if</span> (tests &amp;&amp; tests.<span class="property">length</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">convertRealmObjectToJson</span>(tests[<span class="number">0</span>], <span class="title class_">Test</span>.<span class="property">schema</span>.<span class="property">properties</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">convertRealmObjectToJson</span>(<span class="params">realmObject, schemaPropertyList</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> result = &#123;&#125;;</span><br><span class="line">  <span class="keyword">const</span> keys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(schemaPropertyList);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> keys) &#123;</span><br><span class="line">    result[key] = realmObject[key];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="How-to-debug"><a href="#How-to-debug" class="headerlink" title="How to debug"></a>How to debug</h1><p><strong>reactotron-react-native</strong><br><a href="https://github.com/infinitered/reactotron">https://github.com/infinitered/reactotron</a></p>
+<h1 id="Screen-auto-Rotation"><a href="#Screen-auto-Rotation" class="headerlink" title="Screen auto Rotation"></a>Screen auto Rotation</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Screen Component **/</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ScreenStyles</span> <span class="keyword">from</span> <span class="string">&#x27;./ScreenStyles&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">DeviceScreen</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [styles, setStyles] = <span class="title function_">useState</span>(<span class="title class_">ScreenStyles</span>());</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">onLayout</span>=<span class="string">&#123;event</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">        setStyles(ScreenStyles());</span></span><br><span class="line"><span class="language-xml">      &#125;&#125;&gt;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Style component **/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">    Do some screen detection and do proper styling with screen specific</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">StyleSheet</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">container</span>: &#123;</span><br><span class="line">      <span class="attr">flex</span>: <span class="number">1</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Tile-swiper-with-dots"><a href="#Tile-swiper-with-dots" class="headerlink" title="Tile swiper with dots"></a>Tile swiper with dots</h1><p><a href="https://github.com/leecade/react-native-swiper">https://github.com/leecade/react-native-swiper</a><br><a href="https://github.com/gusgard/react-native-swiper-flatlist">https://github.com/gusgard/react-native-swiper-flatlist</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;<span class="title class_">View</span>, <span class="title class_">StyleSheet</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">PaginationDots</span>(<span class="params">&#123;length, activeIndex&#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;Styles.container&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      &#123;[...Array(length).keys()].map((_, i) =&gt; (</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">View</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">key</span>=<span class="string">&#123;i&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">style</span>=<span class="string">&#123;[</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">Styles.dot</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &#123;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">              <span class="attr">backgroundColor:</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">                <span class="attr">i</span> !== <span class="string">activeIndex</span> ? <span class="attr">Colors.greenLight</span> <span class="attr">:</span> <span class="attr">Colors.charcoalGreen</span>,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            &#125;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          ]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        /&gt;</span></span></span><br><span class="line"><span class="language-xml">      ))&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Styles</span> = <span class="title class_">StyleSheet</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">container</span>: &#123;</span><br><span class="line">    <span class="attr">flexDirection</span>: <span class="string">&#x27;row&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">dot</span>: &#123;</span><br><span class="line">    <span class="attr">width</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">height</span>: <span class="number">10</span>,</span><br><span class="line">    <span class="attr">borderRadius</span>: <span class="number">10</span> / <span class="number">2</span>,</span><br><span class="line">    <span class="attr">borderColor</span>: <span class="string">&#x27;black&#x27;</span>,</span><br><span class="line">    <span class="attr">borderWidth</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">marginLeft</span>: <span class="number">5</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="LaunchDarkly-integration"><a href="#LaunchDarkly-integration" class="headerlink" title="LaunchDarkly integration"></a>LaunchDarkly integration</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">LDClient</span> <span class="keyword">from</span> <span class="string">&#x27;launchdarkly-react-native-client-sdk&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">LaunchDarklyClient</span> = <span class="keyword">new</span> <span class="title class_">LDClient</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">initLaunchDarkly</span> = <span class="keyword">async</span> (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> config = &#123;</span><br><span class="line">      <span class="attr">mobileKey</span>: <span class="variable constant_">PROD_MOBILE_KEY</span>,</span><br><span class="line">      <span class="attr">secondaryMobileKeys</span>: &#123;</span><br><span class="line">        <span class="attr">qa</span>: <span class="variable constant_">QA_MOBILE_KEY</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    user = &#123;</span><br><span class="line">      <span class="attr">key</span>: <span class="variable constant_">USER_KEY</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">LaunchDarklyClient</span>.<span class="title function_">configure</span>(config, user, <span class="number">5.0</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;launchDarkly err&#x27;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getBooleanValue</span> = <span class="keyword">async</span> (<span class="params">environment, key, defaultValue</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (environment === <span class="string">&#x27;QA&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="title class_">LaunchDarklyClient</span>.<span class="title function_">boolVariation</span>(key, defaultValue, <span class="string">&#x27;qa&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">await</span> <span class="title class_">LaunchDarklyClient</span>.<span class="title function_">boolVariation</span>(key, defaultValue);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="File-sharing"><a href="#File-sharing" class="headerlink" title="File sharing"></a>File sharing</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">RNFetchBlob</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-blob-util&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="variable constant_">RNFS</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Share</span> <span class="keyword">from</span> <span class="string">&#x27;react-native-share&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">shareWithIOS</span> = <span class="keyword">async</span> (<span class="params"></span></span><br><span class="line"><span class="params">  fileUrl,</span></span><br><span class="line"><span class="params">  file_name,</span></span><br><span class="line"><span class="params">  type = <span class="string">&#x27;application/pdf&#x27;</span>,</span></span><br><span class="line"><span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> filePath = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">const</span> configOptions = &#123;</span><br><span class="line">    <span class="attr">fileCache</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="title class_">RNFetchBlob</span>.<span class="property">fs</span>.<span class="property">dirs</span>.<span class="property">DocumentDir</span> + <span class="string">&#x27;/&#x27;</span> + file_name,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title class_">RNFetchBlob</span>.<span class="title function_">config</span>(configOptions).<span class="title function_">fetch</span>(</span><br><span class="line">      <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">      fileUrl,</span><br><span class="line">    );</span><br><span class="line">    filePath = response.<span class="title function_">path</span>();</span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      <span class="attr">type</span>: type,</span><br><span class="line">      <span class="attr">filename</span>: file_name,</span><br><span class="line">      <span class="attr">url</span>: filePath,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">Share</span>.<span class="title function_">open</span>(options);</span><br><span class="line">    <span class="keyword">await</span> <span class="variable constant_">RNFS</span>.<span class="title function_">unlink</span>(filePath);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">shareWithAndroid</span> = <span class="keyword">async</span> (<span class="params"></span></span><br><span class="line"><span class="params">  fileUrl,</span></span><br><span class="line"><span class="params">  file_name,</span></span><br><span class="line"><span class="params">  type = <span class="string">&#x27;application/pdf&#x27;</span>,</span></span><br><span class="line"><span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> filePath = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">const</span> configOptions = &#123;</span><br><span class="line">    <span class="attr">fileCache</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="title class_">RNFetchBlob</span>.<span class="property">fs</span>.<span class="property">dirs</span>.<span class="property">DocumentDir</span> + file_name,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title class_">RNFetchBlob</span>.<span class="title function_">config</span>(configOptions).<span class="title function_">fetch</span>(</span><br><span class="line">      <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">      fileUrl,</span><br><span class="line">    );</span><br><span class="line">    filePath = response.<span class="title function_">path</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> base64Data = <span class="keyword">await</span> response.<span class="title function_">readFile</span>(<span class="string">&#x27;base64&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> base64Url = <span class="string">`data:<span class="subst">$&#123;type&#125;</span>;base64,<span class="subst">$&#123;base64Data&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">let</span> options = &#123;</span><br><span class="line">      <span class="attr">filename</span>: file_name,</span><br><span class="line">      <span class="attr">url</span>: base64Url,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">Share</span>.<span class="title function_">open</span>(options);</span><br><span class="line">    <span class="keyword">await</span> <span class="variable constant_">RNFS</span>.<span class="title function_">unlink</span>(filePath);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;error&#x27;</span>, error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="Upload-aab-to-PlayStore"><a href="#Upload-aab-to-PlayStore" class="headerlink" title="Upload aab to PlayStore"></a>Upload aab to PlayStore</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** fastlane/AppFile **/</span></span><br><span class="line">json_key_file(<span class="string">&quot;./google-key.json&quot;</span>)</span><br><span class="line">package_name(<span class="string">&quot;ANDROID_APP_ID&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane supply --aab app-release.aab --track alpha</span><br></pre></td></tr></table></figure>
+
+<h1 id="Upload-ipa-to-AppStore"><a href="#Upload-ipa-to-AppStore" class="headerlink" title="Upload ipa to AppStore"></a>Upload ipa to AppStore</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun altool --upload-app --<span class="built_in">type</span> ios --file YOUR_APP.ipa --username <span class="string">&quot;APPLE_ID&quot;</span> --password <span class="string">&quot;APPLE ID PWD&quot;</span></span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/React-Native/">React Native</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://wayson.github.io/2022/12/21/React-Native-tricks/" data-title="React Native tricks | Wayson&#39;s github page" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2025/01/23/GPT-Prompt-Entry-level/" title="《GPT 提示词大全》基础版">
+  <strong>Previous：</strong><br/>
+  <span>
+  《GPT 提示词大全》基础版</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2020/01/27/PHP-development-with-docker/"  title="PHP development with docker">
+ <strong>Next：</strong><br/> 
+ <span>PHP development with docker
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#React-navigation-reset-stack-navigator"><span class="toc-number">1.</span> <span class="toc-text">React navigation reset stack navigator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Use-fetch"><span class="toc-number">2.</span> <span class="toc-text">Use fetch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-use-Realm"><span class="toc-number">3.</span> <span class="toc-text">How to use Realm</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-debug"><span class="toc-number">4.</span> <span class="toc-text">How to debug</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Screen-auto-Rotation"><span class="toc-number">5.</span> <span class="toc-text">Screen auto Rotation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tile-swiper-with-dots"><span class="toc-number">6.</span> <span class="toc-text">Tile swiper with dots</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LaunchDarkly-integration"><span class="toc-number">7.</span> <span class="toc-text">LaunchDarkly integration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File-sharing"><span class="toc-number">8.</span> <span class="toc-text">File sharing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-aab-to-PlayStore"><span class="toc-number">9.</span> <span class="toc-text">Upload aab to PlayStore</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Upload-ipa-to-AppStore"><span class="toc-number">10.</span> <span class="toc-text">Upload ipa to AppStore</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C#">C#<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/GPT/" title="GPT">GPT<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/NodeJS/" title="NodeJS">NodeJS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Tips/" title="Tips">Tips<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Snippets/" title="Snippets">Snippets<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/One-Liners/" title="One-Liners">One-Liners<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/keepfool" target="_blank" title="CN Blog VueJS">CN Blog VueJS</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://aboutreact.com" target="_blank" title="About React Native">About React Native</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://overreacted.io" target="_blank" title="Overreacted">Overreacted</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Wayson. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wayson317@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2025 
+		
+		<a href="/about" target="_blank" title="Wayson Lin">Wayson Lin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wayson';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

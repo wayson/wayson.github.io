@@ -1,0 +1,740 @@
+
+ <!DOCTYPE HTML>
+<html lang="en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation | Wayson&#39;s github page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wayson Lin">
+    
+
+    
+    <meta name="description" content="I’ve been working on PHP for more than 5 years time. As far as I can find, there are still a lot of companies using PHP with version lower than 5.6. Especially some e-commerce stores like Woocommerce,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation">
+<meta property="og:url" content="http://wayson.github.io/2017/03/30/php-5.2-to-5.6-comparison/index.html">
+<meta property="og:site_name" content="Wayson&#39;s github page">
+<meta property="og:description" content="I’ve been working on PHP for more than 5 years time. As far as I can find, there are still a lot of companies using PHP with version lower than 5.6. Especially some e-commerce stores like Woocommerce,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-03-29T19:09:00.000Z">
+<meta property="article:modified_time" content="2025-03-19T10:23:11.426Z">
+<meta property="article:author" content="Wayson Lin">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Wayson&#39;s github page" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wayson&#39;s github page">Wayson&#39;s github page</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wayson.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/30/php-5.2-to-5.6-comparison/" title="PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation" itemprop="url">PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-29T19:09:00.000Z" itemprop="datePublished"> Published 2017-03-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-2-earlier"><span class="toc-number">1.</span> <span class="toc-text">PHP 5.2 earlier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#autoload"><span class="toc-number">1.1.</span> <span class="toc-text">autoload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PDO-and-MySQLi"><span class="toc-number">1.2.</span> <span class="toc-text">PDO and MySQLi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Type-of-constraints"><span class="toc-number">1.3.</span> <span class="toc-text">Type of constraints</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-2"><span class="toc-number">2.</span> <span class="toc-text">PHP 5.2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-support"><span class="toc-number">2.1.</span> <span class="toc-text">JSON support</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-3"><span class="toc-number">3.</span> <span class="toc-text">PHP 5.3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abandoned-features"><span class="toc-number">3.1.</span> <span class="toc-text">Abandoned features</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#register-Globals"><span class="toc-number">3.1.1.</span> <span class="toc-text">register Globals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Magic-Quotes"><span class="toc-number">3.1.2.</span> <span class="toc-text">Magic Quotes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safe-Mode"><span class="toc-number">3.1.3.</span> <span class="toc-text">Safe Mode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closure"><span class="toc-number">3.2.</span> <span class="toc-text">Closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Magic-methods-invoke-calltatic"><span class="toc-number">3.3.</span> <span class="toc-text">Magic methods: __invoke(), __calltatic()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Namespace"><span class="toc-number">3.4.</span> <span class="toc-text">Namespace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Late-static-binding"><span class="toc-number">3.5.</span> <span class="toc-text">Late static binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Heredock-and-Nowdoc"><span class="toc-number">3.6.</span> <span class="toc-text">Heredock and Nowdoc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-const-define-constant"><span class="toc-number">3.7.</span> <span class="toc-text">Use const define constant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ternary-operator"><span class="toc-number">3.8.</span> <span class="toc-text">Ternary operator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Phar"><span class="toc-number">3.9.</span> <span class="toc-text">Phar</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-4"><span class="toc-number">4.</span> <span class="toc-text">PHP 5.4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Short-Open-Tag"><span class="toc-number">4.1.</span> <span class="toc-text">Short Open Tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#New-syntax-for-array"><span class="toc-number">4.2.</span> <span class="toc-text">New syntax for array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Traits"><span class="toc-number">4.3.</span> <span class="toc-text">Traits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Built-in-Web-server"><span class="toc-number">4.4.</span> <span class="toc-text">Built-in Web server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Detail-modification"><span class="toc-number">4.5.</span> <span class="toc-text">Detail modification</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-5"><span class="toc-number">5.</span> <span class="toc-text">PHP 5.5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yield"><span class="toc-number">5.1.</span> <span class="toc-text">yield</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#list-in-foreach"><span class="toc-number">5.2.</span> <span class="toc-text">list() in foreach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Details-in-changes"><span class="toc-number">5.3.</span> <span class="toc-text">Details in changes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-6"><span class="toc-number">6.</span> <span class="toc-text">PHP 5.6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Improved-constant"><span class="toc-number">6.1.</span> <span class="toc-text">Improved constant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improved-variable-function-parameters"><span class="toc-number">6.2.</span> <span class="toc-text">Improved variable function parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Namespace-1"><span class="toc-number">6.3.</span> <span class="toc-text">Namespace</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>I’ve been working on PHP for more than 5 years time. As far as I can find, there are still a lot of companies using PHP with version lower than 5.6. Especially some e-commerce stores like Woocommerce, Magento 1.x. Most of the owners won’t upgrade PHP because the systems are still working fine. There’s no way to spend money on something unnecessary. As a result, developers should keep the PHP version in mind when we need to build new feature or do some bug fixes for the old system.</p>
+<p>The current version of PHP is 7.1. But there are more than 50% of users are still using PHP 5.x[1] and some PHP versions are end of officially supported [2].</p>
+<p>This article will introduce the new features from PHP 5.2 to PHP 5.6.</p>
+<ul>
+<li>PHP 5.2 before: autoload, PDO and MySQLi, type of constraints</li>
+<li>PHP 5.2: JSON support</li>
+<li>PHP 5.3: Abandoned features, anonymous functions, new magic methods, namespace, late static binding, Heredoc, Nowdoc, const, ternary operator, Phar</li>
+<li>PHP 5.4: Short Open Tag, new syntax of array, Traits, built-in web server, small features changes</li>
+<li>PHP 5.5: yield, list() in foreach, feature changes</li>
+<li>PHP 5.6: constant scalar expressions, Variadic functions and argument unpacking, namespace enhancement</li>
+</ul>
+<span id="more"></span>
+
+<p>[1] : <a href="http://w3techs.com/technologies/details/pl-php/5/all">http://w3techs.com/technologies/details/pl-php/5/all</a><br>[2] : <a href="http://www.php.net/eol.php">http://www.php.net/eol.php</a></p>
+<p>NOTE: The original article is <a href="https://www.iamle.com/archives/1530.html">https://www.iamle.com/archives/1530.html</a></p>
+<h1 id="PHP-5-2-earlier"><a href="#PHP-5-2-earlier" class="headerlink" title="PHP 5.2 earlier"></a>PHP 5.2 earlier</h1><p>(Before 2006)<br>Introduce some features which are worth to be mentioned before PHP 5.2.</p>
+<h2 id="autoload"><a href="#autoload" class="headerlink" title="autoload"></a>autoload</h2><p>Most of the PHP developers may know method __autoload(). If this method has been defined, it will be called when an undefined class is used in the code base. We can load the required class files. For example:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__autoload</span>(<span class="params"><span class="variable">$classname</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">&quot;<span class="subst">&#123;$classname&#125;</span>.php&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>But this usage is not recommended. As no duplicate function names in PHP, only one __autoload() is allowed across the whole codebase. When we need to use some other libraries, it’s inevitable to have multiple autoload methods. Therefore, spl_autoload_register() will be used instead:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">spl_autoload_register</span>(function(<span class="variable">$classname</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">&quot;<span class="subst">&#123;$classname&#125;</span>.php&quot;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>spl_autoload_register() will register the classes into the list of autoload method. When unidentified classes appears in the code, SPL[3] will call the registered classes in reversed registered order from autoload method.</p>
+<p>[3]: SPL: Standard PHP Library are used for implementing standard features. E.g data structure.</p>
+<h2 id="PDO-and-MySQLi"><a href="#PDO-and-MySQLi" class="headerlink" title="PDO and MySQLi"></a>PDO and MySQLi</h2><p>PHP Data Object: The new PHP database access interface.</p>
+<p>In the past, we need to access MySQL database like this:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// connect to server and select database</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="title function_ invoke__">mysql_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;user&quot;</span>, <span class="string">&quot;password&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">mysql_select_db</span>(<span class="string">&quot;database&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// SQL queries</span></span><br><span class="line"><span class="variable">$type</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;type&#x27;</span>];</span><br><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;SELECT * FROM `table` WHERE `type` = <span class="subst">&#123;$type&#125;</span>&quot;</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// print the result</span></span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>, MYSQL_ASSOC))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$row</span> <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">&quot;<span class="subst">&#123;$k&#125;</span>: <span class="subst">&#123;$v&#125;</span>\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// release result set and close the connection</span></span><br><span class="line"><span class="title function_ invoke__">mysql_free_result</span>(<span class="variable">$result</span>);</span><br><span class="line"><span class="title function_ invoke__">mysql_close</span>(<span class="variable">$conn</span>);</span><br></pre></td></tr></table></figure>
+
+<p>In order to use different databases(The above code can only be used with MySQL), PDO is released. In addition, PDO has introduced more features:</p>
+<ul>
+<li>Object oriented interface</li>
+<li>SQL prepare, placeholder syntax</li>
+<li>Better performance. </li>
+<li>Support most of SQL databases. No code changes by switching databases.</li>
+</ul>
+<p>The previous script can be transformed into this with PDO:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Database connection</span></span><br><span class="line"><span class="variable">$conn</span> = <span class="keyword">new</span> <span class="title function_ invoke__">PDO</span>(<span class="string">&quot;mysql:host=localhost;dbname=database&quot;</span>, <span class="string">&quot;user&quot;</span>, <span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// prepare SQL, bind parameters</span></span><br><span class="line"><span class="variable">$query</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;SELECT * FROM `table` WHERE `type` = :type&quot;</span>);</span><br><span class="line"><span class="variable">$query</span>-&gt;<span class="title function_ invoke__">bindParam</span>(<span class="string">&quot;type&quot;</span>, <span class="variable">$_POST</span>[<span class="string">&#x27;type&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Execute and print the results</span></span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$query</span>-&gt;<span class="title function_ invoke__">execute</span>() <span class="keyword">as</span> <span class="variable">$row</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$row</span> <span class="keyword">as</span> <span class="variable">$k</span> =&gt; <span class="variable">$v</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">&quot;<span class="subst">&#123;$k&#125;</span>: <span class="subst">&#123;$v&#125;</span>\n&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>PDO is officially recommended and it provide more generic database access. If there are no special requirements, we’d better learn and use PDO. But we need to use MySQLi if we need to use MySQL specific features. PDO won’t include the MySQL specific features because it has to be used with different database system.</p>
+<p>MySQLi is the enhanced interface of MySQL. It provides both procedural and object-oriented interfaces. Currently it’s the recommended MySQL driver. The old C style MySQL interface will be removed by default in the future.</p>
+<p>There are no big difference to use MySQLi to implement the previous two scripts. For more details, we can visit <a href="http://www.php.net/manual/en/mysqli.quickstart.php">http://www.php.net/manual/en/mysqli.quickstart.php</a></p>
+<h2 id="Type-of-constraints"><a href="#Type-of-constraints" class="headerlink" title="Type of constraints"></a>Type of constraints</h2><p>We can use type of constraints in parameters. But this mechanism is not perfect enough. It applies to Class, callable and array except string and int.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Restrict the first parameter with type MyClass, </span></span><br><span class="line"><span class="comment">// the second parameter is callable, </span></span><br><span class="line"><span class="comment">// the third one is array</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyFunction</span>(<span class="params">MyClass <span class="variable">$a</span>, <span class="keyword">callable</span> <span class="variable">$b</span>, <span class="keyword">array</span> <span class="variable">$c</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="PHP-5-2"><a href="#PHP-5-2" class="headerlink" title="PHP 5.2"></a>PHP 5.2</h1><p>(2006-2011)</p>
+<h2 id="JSON-support"><a href="#JSON-support" class="headerlink" title="JSON support"></a>JSON support</h2><p>For example, json_encode(), json_decode(). JSON is widely used for data transfer in web. It’s natively supported by JavaScript. Actually JSON is part of JavaScript syntax.</p>
+<p>The JSON methods provided by PHP can convert PHP array to JSON string:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$array</span> = [<span class="string">&quot;key&quot;</span> =&gt; <span class="string">&quot;value&quot;</span>, <span class="string">&quot;array&quot;</span> =&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]];</span><br><span class="line"><span class="variable">$json</span> = <span class="title function_ invoke__">json_encode</span>(<span class="variable">$array</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;<span class="subst">&#123;$json&#125;</span>\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$object</span> = <span class="title function_ invoke__">json_decode</span>(<span class="variable">$json</span>);</span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="variable">$object</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Output:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;key&quot;</span>:<span class="string">&quot;value&quot;</span>,<span class="string">&quot;array&quot;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]&#125;</span><br><span class="line"><span class="built_in">stdClass</span> <span class="title function_ invoke__">Object</span></span><br><span class="line">(</span><br><span class="line">    [key] =&gt; value</span><br><span class="line">    [<span class="keyword">array</span>] =&gt; <span class="title function_ invoke__">Array</span></span><br><span class="line">        (</span><br><span class="line">            [<span class="number">0</span>] =&gt; <span class="number">1</span></span><br><span class="line">            [<span class="number">1</span>] =&gt; <span class="number">2</span></span><br><span class="line">            [<span class="number">2</span>] =&gt; <span class="number">3</span></span><br><span class="line">            [<span class="number">3</span>] =&gt; <span class="number">4</span></span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>Note: json_decode() will return an object by default. We will need to set it’s second parameter to be true if we need it return an associative array.</p>
+<h1 id="PHP-5-3"><a href="#PHP-5-3" class="headerlink" title="PHP 5.3"></a>PHP 5.3</h1><p>(2009-2012)</p>
+<p>PHP 5.3 was a really huge update. A lot of new features have been added and it has some incompatible changes to the old versions.</p>
+<h2 id="Abandoned-features"><a href="#Abandoned-features" class="headerlink" title="Abandoned features"></a>Abandoned features</h2><p>The following features will be abandoned. If they are enabled in configuration file, PHP will throw warning in run time.</p>
+<h3 id="register-Globals"><a href="#register-Globals" class="headerlink" title="register Globals"></a>register Globals</h3><p>It is an option in php.ini (register_globals). If it’s enabled, all the form variables($_GET and $_POST) will be registered as global variables.</p>
+<p>For example:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">isAuth</span>())</span><br><span class="line">    <span class="variable">$authorized</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$authorized</span>)</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&quot;page.php&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>It will set $authorized to true after authorization is succeeded. Then it will show the page determined by $authorized value. But we haven’t initialized $authorized to false. When register_globals is enabled, we can skip the authorization check by visiting page &#x2F;auth.php?authorized&#x3D;1 .</p>
+<p>It was a history left over. As a result, it’s turned off by default in PHP 4.2 and removed in PHP 5.4.</p>
+<h3 id="Magic-Quotes"><a href="#Magic-Quotes" class="headerlink" title="Magic Quotes"></a>Magic Quotes</h3><p>The option magic_quotes_gpc in php.ini. It’s also a history left over and removed in PHP 5.4.</p>
+<p>This feature will escape all the user inputs. It sounds great. But PHP has no idea of where the input will go to. SQL? Shell? HTML? Therefore, it will cause confusion in a lot of circumstances.</p>
+<h3 id="Safe-Mode"><a href="#Safe-Mode" class="headerlink" title="Safe Mode"></a>Safe Mode</h3><p>Many virtual web hosting provider will use Safe Mode to isolate different users. But Safe Mode has a lot of problems. For instance, some extension won’t follow Safe Mode to implement authorization control.</p>
+<p>PHP official recommend use Operating System’s mechanism to implement authorization. It will let web server use different user authorizations to run PHP interpreter.</p>
+<h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><p>It’s usually used for temporarily creating anonymous functions. For example, the callback functions.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$func</span> = <span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$arg</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="variable">$arg</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable">$func</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The script above has defined an anonymous function and $func has been assigned. We still use ‘function’ keyword to define anonymous function. But the function name will be ignored. </p>
+<p>Anonymous function will capture external arguments by ‘use’ keyword:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayPlus</span>(<span class="params"><span class="variable">$array</span>, <span class="variable">$num</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">array_walk</span>(<span class="variable">$array</span>, function(&amp;<span class="variable">$v</span>) <span class="keyword">use</span>($<span class="title">num</span>)&#123;</span><br><span class="line">        $<span class="title">v</span> += $<span class="title">num</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The script above has defined an arrayPlus() function (not anonymous function) and it will add a specific number to each element of $array.</p>
+<p>We use array_walk() function in arrayPlus(). It will implement the anonymous function, which we have defined, to each array element. We will call use() to let $number be used inside array_walk(). </p>
+<h2 id="Magic-methods-invoke-calltatic"><a href="#Magic-methods-invoke-calltatic" class="headerlink" title="Magic methods: __invoke(), __calltatic()"></a>Magic methods: __invoke(), __calltatic()</h2><p>PHP has provided some “Magic methods” which are used for implementing something like ‘override’ in other programming languages. For example, it will trigger some magic methods when it access undefined properties or methods.</p>
+<p>As the anonymous function feature has been developed, PHP has included a new magic method: __invoke(). </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"><span class="variable">$str</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="string">&quot;A::__invoke(): <span class="subst">&#123;$str&#125;</span>&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> A;</span><br><span class="line"><span class="variable">$a</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>The output will be:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A::<span class="title function_ invoke__">__invoke</span>(): Hello World</span><br></pre></td></tr></table></figure>
+
+<p>__callStatic() will be triggered when a undefined static method is called.</p>
+<h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><p>PHP namespace has the most ridiculous syntax:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// The separator should be forward slash and namespace should be put in the first line of file.</span></span><br><span class="line"><span class="comment">// Namespace can include any script. Only Class, Function, Constant will be affected by namespace.</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">XXOO</span>\<span class="title class_">Test</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This class full namespace is \XXOO\Test\A. The first forward slash states it&#x27;s global namespace.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// You can even define a second namespace in current file. The following script will be in \Other\Test2 .</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Other</span>\<span class="title class_">Test2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initialized the object from other namespace</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> \XXOO\Test\A;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// You can use braces to define a third namespace</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Other</span> &#123;</span><br><span class="line">    // <span class="title class_">Initialized</span> <span class="title class_">the</span> <span class="title class_">object</span> <span class="title class_">from</span> <span class="title class_">child</span> <span class="title class_">namesapce</span>.</span><br><span class="line">    $<span class="title class_">b</span> = <span class="title class_">new</span> <span class="title class_">Test2</span>\<span class="title class_">B</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Include other namesapce and rename it.</span></span><br><span class="line">    <span class="comment">// <span class="doctag">NOTE:</span> It can include Class only. Can include functions and constants</span></span><br><span class="line">    <span class="keyword">use</span> \<span class="title">XXOO</span>\<span class="title">Test</span>\<span class="title">A</span> <span class="keyword">as</span> <span class="title">ClassA</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>For more namespace syntax, we can visit <a href="http://www.php.net/manual/zh/language.namespaces.php">http://www.php.net/manual/zh/language.namespaces.php</a>.</p>
+<p>Namespace is often used by autoload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">spl_autoload_register</span>(</span><br><span class="line">    function (<span class="variable">$class</span>) &#123;</span><br><span class="line">        <span class="title function_ invoke__">spl_autoload</span>(<span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;\\&quot;</span>, <span class="string">&quot;/&quot;</span>, <span class="variable">$class</span>));</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>When we initialize \XXOO\Test\A, its full namespace will be passed to autoload(). autoload() will replace forward slashes with backslash in the namespace. As a result, we can put class files to different layers and load files on required.</p>
+<h2 id="Late-static-binding"><a href="#Late-static-binding" class="headerlink" title="Late static binding"></a>Late static binding</h2><p>The OPP mechanism of PHP has inheritance and something like virtual function. For example:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">callFuncXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">funcXXOO</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">funcXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;A::funcXXOO()&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">funcXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;B::funcXXOO&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">new</span> B;</span><br><span class="line"><span class="variable">$b</span>-&gt;<span class="title function_ invoke__">callFuncXXOO</span>();</span><br></pre></td></tr></table></figure>
+
+<p>The result would be:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B::<span class="variable constant_">funcXXOO</span></span><br></pre></td></tr></table></figure>
+
+<p>The virtual function can be reflected when <code>$this-&gt;funcXXOO()</code> was called in class A. Actually it’s calling <code>B::funcXXOO()</code>. </p>
+<p>If we change all functions to static functions:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="built_in">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">callFuncXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="built_in">self</span>::<span class="title function_ invoke__">funcXXOO</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">funcXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;A::funcXXOO()&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="built_in">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">funcXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;B::funcXXOO&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">new</span> B;</span><br><span class="line"><span class="variable">$b</span>-&gt;<span class="title function_ invoke__">callFuncXXOO</span>();</span><br></pre></td></tr></table></figure>
+
+<p>The output will be:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A::<span class="title function_ invoke__">funcXXOO</span>()</span><br></pre></td></tr></table></figure>
+
+<p>It’s because self will be treated as “Current class”. PHP 5.3 will give static keyword a new feature: late static binding.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="built_in">static</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">callFuncXXOO</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="built_in">static</span>::<span class="title function_ invoke__">funcXXOO</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<p>The result will be expected:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B::<span class="variable constant_">funcXXOO</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Heredock-and-Nowdoc"><a href="#Heredock-and-Nowdoc" class="headerlink" title="Heredock and Nowdoc"></a>Heredock and Nowdoc</h2><p>PHP 5.3 will bring some improvement to Heredoc and Nowdoc.</p>
+<p>Heredoc will act as double quote string:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="string">&quot;MyName&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt; TEXT</span></span><br><span class="line"><span class="string">My name is &quot;<span class="subst">&#123;$name&#125;</span>&quot;.</span></span><br><span class="line"><span class="string">TEXT</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Heredoc starts with three open angles and followed by an identifier(TEXT). It ends with another identifier(no retract). It can also include variables:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="string">&lt;&lt;&lt;EOD</span></span><br><span class="line"><span class="string">Hello World</span></span><br><span class="line"><span class="string">EOD</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">xx</span> = <span class="string">&lt;&lt;&lt; EOD</span></span><br><span class="line"><span class="string">Hello World</span></span><br><span class="line"><span class="string">EOD</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$oo</span> = <span class="string">&lt;&lt;&lt; EOD</span></span><br><span class="line"><span class="string">Hello World</span></span><br><span class="line"><span class="string">EOD</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Nowdoc acts like a single quote string and it can’t include variables. It requires single quotes in the first identifier followed by three open angles:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span> = <span class="string">&quot;MyName&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&lt;&lt;&lt; &#x27;TEXT&#x27;</span></span><br><span class="line"><span class="string">My name is &quot;&#123;$name&#125;&quot;.</span></span><br><span class="line"><span class="string">TEXT</span>;</span><br></pre></td></tr></table></figure>
+
+<p>It will output:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My name is <span class="string">&quot;<span class="subst">&#123;$name&#125;</span>&quot;</span>.</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-const-define-constant"><a href="#Use-const-define-constant" class="headerlink" title="Use const define constant"></a>Use const define constant</h2><p>Constant can be defined in full namespace and Classes.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//old syntax</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;XOOO&quot;</span>, <span class="string">&quot;Value&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//new syntax</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">XXOO</span> = <span class="string">&quot;Value&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Only constant can be defined in const. Expression is not allowed.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Correct use</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">XXOO</span> = <span class="number">1234</span>;</span><br><span class="line"><span class="comment">// Wrong use</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">XXOO</span> = <span class="number">2</span> * <span class="number">617</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ternary-operator"><a href="#Ternary-operator" class="headerlink" title="Ternary operator"></a>Ternary operator</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//old syntax</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span> ? <span class="variable">$a</span> : <span class="string">&quot;No Value&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//new syntax</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span> ?: <span class="string">&quot;No Value&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Phar"><a href="#Phar" class="headerlink" title="Phar"></a>Phar</h2><p>It’s short for PHP Archive. It’s a library of Pear at first. But it has been rewritten as C extension and integrated into PHP from PHP 5.3. Phar can be used for packing multiple PHP files (or other type of files) into a single .phar compress file(zip format by default). It makes PHP applications easier to be published. Also it provides digital signature authorization feature.</p>
+<p>.phar files can be executed by PHP engine(same as .php). What’s more, it can be included as follows:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span>(<span class="string">&quot;xxoo.phar&quot;</span>);</span><br><span class="line"><span class="keyword">require</span>(<span class="string">&quot;phar://xxoo.phar/xo/ox.php&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="PHP-5-4"><a href="#PHP-5-4" class="headerlink" title="PHP 5.4"></a>PHP 5.4</h1><p>(2012-2013)</p>
+<h2 id="Short-Open-Tag"><a href="#Short-Open-Tag" class="headerlink" title="Short Open Tag"></a>Short Open Tag</h2><p>Normally, PHP tags will be like this:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// Code...</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>It can be rewritten as:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span> <span class="comment">/* Code... */</span> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Also, we can rewrite</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$xxoo</span>;<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>into</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?=</span> <span class="variable">$xxoo</span>;<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This is Short Open Tag. It’s enabled by default in PHP 5.3 and always enabled in PHP 5.4. This syntax makes PHP variables much easier to be integrated in HTML. For pure PHP files(e.g class files), PHP Official recommends file starts with PHP open tag and <strong>ignore</strong> close tag. It will make sure the whole PHP file won’t contain any extra output. Otherwise there might be some issues in setting Header and Cookie when the file is included. Because Header and Cookie must be sent before any content.</p>
+<h2 id="New-syntax-for-array"><a href="#New-syntax-for-array" class="headerlink" title="New syntax for array"></a>New syntax for array</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//old syntax</span></span><br><span class="line"><span class="variable">$arr</span> = <span class="keyword">array</span>(<span class="string">&quot;key&quot;</span> =&gt; <span class="string">&quot;value&quot;</span>, <span class="string">&quot;key2&quot;</span> =&gt; <span class="string">&quot;value2&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//new syntax</span></span><br><span class="line"><span class="variable">$arr</span> = [<span class="string">&quot;key&quot;</span> =&gt; <span class="string">&quot;value&quot;</span>, <span class="string">&quot;key2&quot;</span> =&gt; <span class="string">&quot;value2&quot;</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h2><p>It’s a new mechanism to replace inheritance. PHP doesn’t support override but multiple Traits can be used in a single class.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Traits can&#x27;t be initialized. It can only be included in Class.</span></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">SayWorld</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHelloWorld</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">// Include trait</span></span><br><span class="line">    <span class="keyword">use</span> <span class="title">SayWorld</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$xxoo</span> = <span class="keyword">new</span> <span class="title class_">MyHelloWorld</span>();</span><br><span class="line"><span class="variable">$xxoo</span>-&gt;<span class="title function_ invoke__">sayHello</span>();</span><br></pre></td></tr></table></figure>
+
+<p>Traits has a lot of magic features, such as multiple Traits, conflict resolution, changing access right, setting alias name for function, a Traits can include other Traits. For more details, visit <a href="http://www.php.net/manual/zh/language.oop5.traits.php">http://www.php.net/manual/zh/language.oop5.traits.php</a>.</p>
+<h2 id="Built-in-Web-server"><a href="#Built-in-Web-server" class="headerlink" title="Built-in Web server"></a>Built-in Web server</h2><p>A lightweight Web server has been built-in since PHP 5.4. But it doesn’t support concurrency. It targets development and debug environment. It’s quite convenient for development.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -S localhost:<span class="number">8000</span></span><br></pre></td></tr></table></figure>
+
+<p>A web server will start and the current path will be a web server directory. It can be accessed by <a href="http://localhost:8000/">http://localhost:8000/</a>. </p>
+<p>We need URL rewrite in most of the web applications. PHP provides a feature to set routing script:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -S localhost:<span class="number">8000</span> index.php</span><br></pre></td></tr></table></figure>
+
+<p>All the requests will be processed by index.php and we can use XDebug to run breakpoint debugging.</p>
+<h2 id="Detail-modification"><a href="#Detail-modification" class="headerlink" title="Detail modification"></a>Detail modification</h2><p>PHP 5.4 provides a new way to access static methods:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$func</span> = <span class="string">&quot;funcXXOO&quot;</span>;</span><br><span class="line">A::&#123;<span class="variable">$func</span>&#125;();</span><br></pre></td></tr></table></figure>
+
+<p>Access new initialized class method:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">new</span> <span class="title class_">MyClass</span>)-&gt;<span class="title function_ invoke__">xxoo</span>();</span><br></pre></td></tr></table></figure>
+
+<p>Access element from function returned array(It will throw exception error in previous versions).</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="title function_ invoke__">func</span>()[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+
+<h1 id="PHP-5-5"><a href="#PHP-5-5" class="headerlink" title="PHP 5.5"></a>PHP 5.5</h1><p>(From 2013)</p>
+<h2 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h2><p>yield is used by functions which require returning an iterator:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">number10</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span> &lt;= <span class="number">10</span>; <span class="variable">$i</span> += <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">yield</span> <span class="variable">$i</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This function will return an array</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="list-in-foreach"><a href="#list-in-foreach" class="headerlink" title="list() in foreach"></a>list() in foreach</h2><p>list() is used for accessing nested arrays inside foreach loop:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$array</span> = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$array</span> <span class="keyword">as</span> <span class="keyword">list</span>(<span class="variable">$a</span>, <span class="variable">$b</span>, <span class="variable">$c</span>))</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;<span class="subst">&#123;$a&#125;</span> <span class="subst">&#123;$b&#125;</span> <span class="subst">&#123;$c&#125;</span>\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>The result would be:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line"><span class="number">4</span> <span class="number">5</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Details-in-changes"><a href="#Details-in-changes" class="headerlink" title="Details in changes"></a>Details in changes</h2><ul>
+<li><p>mysql methods are deprecated. PDO and MySQLi will be recommended. Windows XP is not supported anymore.</p>
+</li>
+<li><p><code>MyClass::class</code> will return a full class name(Included full namespace).</p>
+</li>
+<li><p>empty() support</p>
+</li>
+<li><p>finally block is included in try-catch.</p>
+</li>
+</ul>
+<h1 id="PHP-5-6"><a href="#PHP-5-6" class="headerlink" title="PHP 5.6"></a>PHP 5.6</h1><h2 id="Improved-constant"><a href="#Improved-constant" class="headerlink" title="Improved constant"></a>Improved constant</h2><p>Previous constants can be used for constant computation in definition:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">A</span> = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">B</span> = A + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">STR</span> = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="variable constant_">STR2</span> = <span class="built_in">self</span>::<span class="variable constant_">STR</span> + <span class="string">&quot;, world&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Constant can be used for default argument value in function:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"><span class="variable">$arg</span> = C::<span class="variable constant_">STR2</span></span>)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Improved-variable-function-parameters"><a href="#Improved-variable-function-parameters" class="headerlink" title="Improved variable function parameters"></a>Improved variable function parameters</h2><p>It’s used for replacing func_get_args():</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...<span class="variable">$args</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$result</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$args</span> <span class="keyword">as</span> <span class="variable">$arg</span>)</span><br><span class="line">        <span class="variable">$result</span> += <span class="variable">$arg</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$result</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$arr</span> = [<span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="title function_ invoke__">add</span>(<span class="number">1</span>, ...<span class="variable">$arr</span>);</span><br><span class="line"><span class="comment">// The output is 6</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Namespace-1"><a href="#Namespace-1" class="headerlink" title="Namespace"></a>Namespace</h2><p>Namespace support constants and functions:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title class_">Name</span>\<span class="title class_">Space</span> &#123;</span><br><span class="line">    <span class="title class_">const</span> <span class="title class_">FOO</span> = 42;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; <span class="keyword">echo</span> <span class="keyword">__FUNCTION__</span>.<span class="string">&quot;\n&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> &#123;</span><br><span class="line">    <span class="title class_">use</span> <span class="title class_">const</span> <span class="title class_">Name</span>\<span class="title class_">Space</span>\<span class="title class_">FOO</span>;</span><br><span class="line">    <span class="keyword">use</span> <span class="keyword">function</span> <span class="title">Name</span>\<span class="title">Space</span>\<span class="title">f</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> FOO.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">f</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://wayson.github.io/2017/03/30/php-5.2-to-5.6-comparison/" data-title="PHP 5.2, 5.3, 5.4, 5.5, 5.6 Comparison and feature explanation | Wayson&#39;s github page" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/06/21/most-useful-linux-commands/" title="Most useful Linux commands">
+  <strong>Previous：</strong><br/>
+  <span>
+  Most useful Linux commands</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/03/23/time-to-start-writing/"  title="Time to start writing">
+ <strong>Next：</strong><br/> 
+ <span>Time to start writing
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-2-earlier"><span class="toc-number">1.</span> <span class="toc-text">PHP 5.2 earlier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#autoload"><span class="toc-number">1.1.</span> <span class="toc-text">autoload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PDO-and-MySQLi"><span class="toc-number">1.2.</span> <span class="toc-text">PDO and MySQLi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Type-of-constraints"><span class="toc-number">1.3.</span> <span class="toc-text">Type of constraints</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-2"><span class="toc-number">2.</span> <span class="toc-text">PHP 5.2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-support"><span class="toc-number">2.1.</span> <span class="toc-text">JSON support</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-3"><span class="toc-number">3.</span> <span class="toc-text">PHP 5.3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Abandoned-features"><span class="toc-number">3.1.</span> <span class="toc-text">Abandoned features</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#register-Globals"><span class="toc-number">3.1.1.</span> <span class="toc-text">register Globals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Magic-Quotes"><span class="toc-number">3.1.2.</span> <span class="toc-text">Magic Quotes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safe-Mode"><span class="toc-number">3.1.3.</span> <span class="toc-text">Safe Mode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closure"><span class="toc-number">3.2.</span> <span class="toc-text">Closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Magic-methods-invoke-calltatic"><span class="toc-number">3.3.</span> <span class="toc-text">Magic methods: __invoke(), __calltatic()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Namespace"><span class="toc-number">3.4.</span> <span class="toc-text">Namespace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Late-static-binding"><span class="toc-number">3.5.</span> <span class="toc-text">Late static binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Heredock-and-Nowdoc"><span class="toc-number">3.6.</span> <span class="toc-text">Heredock and Nowdoc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use-const-define-constant"><span class="toc-number">3.7.</span> <span class="toc-text">Use const define constant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ternary-operator"><span class="toc-number">3.8.</span> <span class="toc-text">Ternary operator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Phar"><span class="toc-number">3.9.</span> <span class="toc-text">Phar</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-4"><span class="toc-number">4.</span> <span class="toc-text">PHP 5.4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Short-Open-Tag"><span class="toc-number">4.1.</span> <span class="toc-text">Short Open Tag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#New-syntax-for-array"><span class="toc-number">4.2.</span> <span class="toc-text">New syntax for array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Traits"><span class="toc-number">4.3.</span> <span class="toc-text">Traits</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Built-in-Web-server"><span class="toc-number">4.4.</span> <span class="toc-text">Built-in Web server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Detail-modification"><span class="toc-number">4.5.</span> <span class="toc-text">Detail modification</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-5"><span class="toc-number">5.</span> <span class="toc-text">PHP 5.5</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#yield"><span class="toc-number">5.1.</span> <span class="toc-text">yield</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#list-in-foreach"><span class="toc-number">5.2.</span> <span class="toc-text">list() in foreach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Details-in-changes"><span class="toc-number">5.3.</span> <span class="toc-text">Details in changes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-5-6"><span class="toc-number">6.</span> <span class="toc-text">PHP 5.6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Improved-constant"><span class="toc-number">6.1.</span> <span class="toc-text">Improved constant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Improved-variable-function-parameters"><span class="toc-number">6.2.</span> <span class="toc-text">Improved variable function parameters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Namespace-1"><span class="toc-number">6.3.</span> <span class="toc-text">Namespace</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C#">C#<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/GPT/" title="GPT">GPT<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/NodeJS/" title="NodeJS">NodeJS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Tips/" title="Tips">Tips<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Snippets/" title="Snippets">Snippets<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/One-Liners/" title="One-Liners">One-Liners<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/keepfool" target="_blank" title="CN Blog VueJS">CN Blog VueJS</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://aboutreact.com" target="_blank" title="About React Native">About React Native</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://overreacted.io" target="_blank" title="Overreacted">Overreacted</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Wayson. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wayson317@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2025 
+		
+		<a href="/about" target="_blank" title="Wayson Lin">Wayson Lin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wayson';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,578 @@
+
+ <!DOCTYPE HTML>
+<html lang="en,default">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>PHP development with docker | Wayson&#39;s github page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Wayson Lin">
+    
+
+    
+    <meta name="description" content="This is a docker-compose temaplte and file structures for Laravel development. Docker compose template12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP development with docker">
+<meta property="og:url" content="http://wayson.github.io/2020/01/27/PHP-development-with-docker/index.html">
+<meta property="og:site_name" content="Wayson&#39;s github page">
+<meta property="og:description" content="This is a docker-compose temaplte and file structures for Laravel development. Docker compose template12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-27T01:57:35.000Z">
+<meta property="article:modified_time" content="2025-03-19T10:23:11.427Z">
+<meta property="article:author" content="Wayson Lin">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Wayson&#39;s github page" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Wayson&#39;s github page">Wayson&#39;s github page</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:wayson.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/01/27/PHP-development-with-docker/" title="PHP development with docker" itemprop="url">PHP development with docker</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Wayson Lin" target="_blank" itemprop="author">Wayson Lin</a>
+		
+  <p class="article-time">
+    <time datetime="2020-01-27T01:57:35.000Z" itemprop="datePublished"> Published 2020-01-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-compose-template"><span class="toc-number">1.</span> <span class="toc-text">Docker compose template</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-Stack"><span class="toc-number">1.1.</span> <span class="toc-text">PHP Stack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NGINX"><span class="toc-number">1.2.</span> <span class="toc-text">NGINX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MYSQL"><span class="toc-number">1.3.</span> <span class="toc-text">MYSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Laravel-environment-file"><span class="toc-number">1.4.</span> <span class="toc-text">Laravel environment file</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>This is a docker-compose temaplte and file structures for Laravel development.</p>
+<h2 id="Docker-compose-template"><a href="#Docker-compose-template" class="headerlink" title="Docker compose template"></a>Docker compose template</h2><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker-compose.yml</span></span><br><span class="line">version: <span class="string">&#x27;3&#x27;</span></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  <span class="comment">#PHP Service</span></span><br><span class="line">  app:</span><br><span class="line">    build: ./php</span><br><span class="line">    image: homestead/php:<span class="number">7.2</span></span><br><span class="line">    container_name: app</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    environment:</span><br><span class="line">      SERVICE_NAME: app</span><br><span class="line">      SERVICE_TAGS: dev</span><br><span class="line">    working_dir: /var/www</span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#Redis service</span></span><br><span class="line">  redis:</span><br><span class="line">    image: redis</span><br><span class="line">    container_name: redis</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;6379:6379&quot;</span></span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#Nginx Service</span></span><br><span class="line">  webserver:</span><br><span class="line">    image: nginx:alpine</span><br><span class="line">    container_name: webserver</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8888:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;443:443&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">      - ./nginx/conf.d/:/etc/nginx/conf.d/</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#MySQL Service</span></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:<span class="number">5.7</span>.<span class="number">22</span></span><br><span class="line">    container_name: db</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: homestead</span><br><span class="line">      MYSQL_ROOT_PASSWORD: secret</span><br><span class="line">      MYSQL_USER: homestead</span><br><span class="line">      MYSQL_PASSWORD: secret</span><br><span class="line">      SERVICE_TAGS: dev</span><br><span class="line">      SERVICE_NAME: mysql</span><br><span class="line">    volumes:</span><br><span class="line">      - dbdata:/var/lib/mysql/</span><br><span class="line">      - ./mysql/my.cnf:/etc/mysql/my.cnf</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line">  </span><br><span class="line">  <span class="comment">#phpmyadmin</span></span><br><span class="line">  phpmyadmin:</span><br><span class="line">    image: phpmyadmin/phpmyadmin</span><br><span class="line">    container_name: phpmyadmin</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    environment:</span><br><span class="line">     - PMA_ARBITRARY=<span class="number">1</span></span><br><span class="line">     - PMA_HOST=db</span><br><span class="line">     - PMA_PORT=<span class="number">3306</span></span><br><span class="line">     - PMA_USER=homestead</span><br><span class="line">     - PMA_PASSWORD=secret</span><br><span class="line">    ports:</span><br><span class="line">     - <span class="number">8000</span>:<span class="number">80</span></span><br><span class="line">    volumes:</span><br><span class="line">     - /sessions</span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line">  <span class="comment">#socket.io</span></span><br><span class="line">  socket:</span><br><span class="line">    image: node:<span class="number">10.16</span>.<span class="number">0</span></span><br><span class="line">    container_name: app-socket</span><br><span class="line">    restart: unless-stopped</span><br><span class="line">    tty: true</span><br><span class="line">    ports:</span><br><span class="line">     - <span class="number">6001</span>:<span class="number">6001</span></span><br><span class="line">    volumes:</span><br><span class="line">      - LARAVEL_APP_ROOT_PATH:/var/www</span><br><span class="line">    working_dir: /var/www</span><br><span class="line">    command: bash -c <span class="string">&quot;npm install &amp;&amp; node /var/www/socket.dev.js&quot;</span></span><br><span class="line">    networks:</span><br><span class="line">      - app-network</span><br><span class="line"></span><br><span class="line"><span class="comment">#Docker Networks</span></span><br><span class="line">networks:</span><br><span class="line">  app-network:</span><br><span class="line">    driver: bridge</span><br><span class="line"><span class="comment">#Volumes</span></span><br><span class="line">volumes:</span><br><span class="line">  dbdata:</span><br><span class="line">    driver: local</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="PHP-Stack"><a href="#PHP-Stack" class="headerlink" title="PHP Stack"></a>PHP Stack</h3><p>In folder .&#x2F;php<br>– .&#x2F;php&#x2F;api-queue.conf  &#x2F;&#x2F; API queue worker<br>– .&#x2F;php&#x2F;crontab         &#x2F;&#x2F; Cron job<br>– .&#x2F;php&#x2F;Dockerfile      &#x2F;&#x2F; Docker image build<br>– .&#x2F;php&#x2F;local.ini       &#x2F;&#x2F; The PHP config<br>– .&#x2F;php&#x2F;start.sh        &#x2F;&#x2F; Start up services</p>
+<ul>
+<li>.&#x2F;php&#x2F;api-queue.conf</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[program:api-queue]</span><br><span class="line">command=php /var/www/artisan queue:work --tries=1 --memory=384 --timeout=600 --env=local</span><br><span class="line">user=www</span><br><span class="line">numprocs=2</span><br><span class="line">process_name=%(program_name)s_%(process_num)02d</span><br><span class="line">autostart=true</span><br><span class="line">autorestart=true</span><br><span class="line">startretries=99999</span><br><span class="line">stderr_logfile=/var/log/api-queue.log</span><br></pre></td></tr></table></figure>
+<ul>
+<li>.&#x2F;php&#x2F;crontab</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* * * * * root /usr/local/bin/php  /var/www/artisan schedule:run --env=local</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>.&#x2F;php&#x2F;Dockerfile</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">FROM php:7.2-fpm-stretch</span><br><span class="line"></span><br><span class="line"># Set working directory</span><br><span class="line">WORKDIR /var/www</span><br><span class="line"></span><br><span class="line"># Install dependencies and extensions</span><br><span class="line">RUN buildDeps=&quot; \</span><br><span class="line">        default-libmysqlclient-dev \</span><br><span class="line">        libbz2-dev \</span><br><span class="line">        libmemcached-dev \</span><br><span class="line">        libsasl2-dev \</span><br><span class="line">    &quot; \</span><br><span class="line">    runtimeDeps=&quot; \</span><br><span class="line">        build-essential \</span><br><span class="line">        mysql-client \</span><br><span class="line">        supervisor \</span><br><span class="line">        cron \</span><br><span class="line">        libpng-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        locales \</span><br><span class="line">        zip \</span><br><span class="line">        jpegoptim \</span><br><span class="line">        optipng \</span><br><span class="line">        pngquant \</span><br><span class="line">        gifsicle \</span><br><span class="line">        vim \</span><br><span class="line">        unzip \</span><br><span class="line">        curl \</span><br><span class="line">        git \</span><br><span class="line">        libgmp-dev \</span><br><span class="line">		re2c \</span><br><span class="line">        libmhash-dev \</span><br><span class="line">        file \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">		libicu-dev \</span><br><span class="line">        libjpeg-dev \</span><br><span class="line">		libldap2-dev \</span><br><span class="line">		libmcrypt-dev \</span><br><span class="line">        libmemcachedutil2 \</span><br><span class="line">		libpng-dev \</span><br><span class="line">		libxml2-dev \</span><br><span class="line">    &quot; \</span><br><span class="line">    &amp;&amp; apt-get update &amp;&amp; apt-get -y upgrade &amp;&amp; apt-get dist-upgrade &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \</span><br><span class="line">	&amp;&amp; apt-get install -y libpq-dev \</span><br><span class="line">    &amp;&amp; apt-get clean \</span><br><span class="line">	&amp;&amp; ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/ \</span><br><span class="line">	&amp;&amp; docker-php-ext-configure gmp \</span><br><span class="line">    &amp;&amp; docker-php-ext-install zip exif pcntl bcmath bz2 calendar iconv intl mbstring mysqli opcache pdo_mysql gmp pdo_pgsql pgsql soap zip \</span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install gd \</span><br><span class="line">    &amp;&amp; docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install ldap \</span><br><span class="line">    &amp;&amp; docker-php-ext-install exif \</span><br><span class="line">    &amp;&amp; pecl install memcached redis \</span><br><span class="line">    &amp;&amp; docker-php-ext-enable memcached.so redis.so \</span><br><span class="line">    &amp;&amp; apt-get purge -y --auto-remove $buildDeps \</span><br><span class="line">    &amp;&amp; rm -r /var/lib/apt/lists/*</span><br><span class="line"></span><br><span class="line"># Install composer</span><br><span class="line">RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer</span><br><span class="line"></span><br><span class="line"># Add user for laravel application</span><br><span class="line">RUN groupadd -g 1000 www \</span><br><span class="line">    &amp;&amp; useradd -u 1000 -ms /bin/bash -g www www</span><br><span class="line"></span><br><span class="line"># Set the cron job</span><br><span class="line">COPY ./crontab /etc/cron.d/cool-task</span><br><span class="line">RUN chmod 0644 /etc/cron.d/cool-task &amp;&amp; crontab /etc/cron.d/cool-task &amp;&amp; touch /var/log/cron.log</span><br><span class="line"></span><br><span class="line"># Set the supervisord</span><br><span class="line">COPY ./api-queue.conf /etc/supervisor/conf.d/api-queue.conf</span><br><span class="line"></span><br><span class="line"># Boost compose install speed</span><br><span class="line">RUN composer global require hirak/prestissimo</span><br><span class="line"></span><br><span class="line">COPY ./start.sh /usr/local/bin/start.sh</span><br><span class="line">RUN cat /usr/local/bin/start.sh &amp;&amp; chmod +x /usr/local/bin/start.sh</span><br><span class="line"></span><br><span class="line"># Expose port 9000 and start php-fpm server</span><br><span class="line">EXPOSE 9000</span><br><span class="line">CMD service supervisor start &amp;&amp; service cron start &amp;&amp; php-fpm &amp;&amp; cron</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>.&#x2F;php&#x2F;local.ini</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize=40M</span><br><span class="line">post_max_size=40M</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>.&#x2F;php&#x2F;start.sh</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">chmod 0644 /etc/cron.d/cool-task</span><br><span class="line">crontab /etc/cron.d/cool-task</span><br><span class="line">touch /var/log/cron.log</span><br><span class="line"></span><br><span class="line">service supervisor start</span><br><span class="line">service cron start</span><br><span class="line">php-fpm</span><br><span class="line">cron</span><br></pre></td></tr></table></figure>
+
+<h3 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h3><p>.&#x2F;nginx&#x2F;conf.d&#x2F;app.conf</p>
+<ul>
+<li>.&#x2F;nginx&#x2F;conf.d&#x2F;app.conf</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    index index.php index.html;</span><br><span class="line">    error_log  /var/log/nginx/error.log;</span><br><span class="line">    access_log /var/log/nginx/access.log;</span><br><span class="line">    root /var/www/public;</span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        try_files $uri =404;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">        fastcgi_pass app:9000;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        fastcgi_param PATH_INFO $fastcgi_path_info;</span><br><span class="line">    &#125;</span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ /index.php?$query_string;</span><br><span class="line">        gzip_static on;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h3><ul>
+<li>.&#x2F;mysql&#x2F;my.cnf</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">general_log = 1</span><br><span class="line">general_log_file = /var/lib/mysql/general.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Laravel-environment-file"><a href="#Laravel-environment-file" class="headerlink" title="Laravel environment file"></a>Laravel environment file</h3><ul>
+<li>.&#x2F;api_development_env_files&#x2F;.env</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">APP_ENV=local</span><br><span class="line">APP_KEY=abcdf</span><br><span class="line">APP_URL=http://laravel.api</span><br><span class="line">DB_HOST=db</span><br><span class="line">DB_DATABASE=homestead</span><br><span class="line">DB_USERNAME=homestead</span><br><span class="line">DB_PASSWORD=secret</span><br><span class="line">PUSH_ENV=development</span><br><span class="line">CACHE_DRIVER=redis</span><br><span class="line">SESSION_DRIVER=file</span><br><span class="line">BROADCAST_DRIVER=redis</span><br><span class="line">REDIS_HOST=redis</span><br><span class="line">JWT_SECRET=JWT_SECRET</span><br><span class="line">JWT_TTL=262800</span><br><span class="line">JWT_TTL_REFRESH=262800</span><br><span class="line">ALLOW_ORIGIN=*</span><br><span class="line">QUEUE_DRIVER=sync #sqs in production, but sync for staging</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/DevOps/">DevOps</a>►<a class="article-category-link" href="/categories/DevOps/PHP/">PHP</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://wayson.github.io/2020/01/27/PHP-development-with-docker/" data-title="PHP development with docker | Wayson&#39;s github page" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2022/12/21/React-Native-tricks/" title="React Native tricks">
+  <strong>Previous：</strong><br/>
+  <span>
+  React Native tricks</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2019/10/07/Azure-devops-with-React-Native/"  title="Azure devops with React Native">
+ <strong>Next：</strong><br/> 
+ <span>Azure devops with React Native
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-compose-template"><span class="toc-number">1.</span> <span class="toc-text">Docker compose template</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP-Stack"><span class="toc-number">1.1.</span> <span class="toc-text">PHP Stack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NGINX"><span class="toc-number">1.2.</span> <span class="toc-text">NGINX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MYSQL"><span class="toc-number">1.3.</span> <span class="toc-text">MYSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Laravel-environment-file"><span class="toc-number">1.4.</span> <span class="toc-text">Laravel environment file</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/C/" title="C#">C#<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/" title="DevOps">DevOps<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/GPT/" title="GPT">GPT<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Linux/" title="Linux">Linux<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/MySQL/" title="MySQL">MySQL<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/NodeJS/" title="NodeJS">NodeJS<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/PHP/" title="PHP">PHP<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/DevOps/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/React-Native/" title="React Native">React Native<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Tips/" title="Tips">Tips<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Snippets/" title="Snippets">Snippets<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/One-Liners/" title="One-Liners">One-Liners<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/keepfool" target="_blank" title="CN Blog VueJS">CN Blog VueJS</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://aboutreact.com" target="_blank" title="About React Native">About React Native</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://overreacted.io" target="_blank" title="Overreacted">Overreacted</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Wayson. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:wayson317@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2025 
+		
+		<a href="/about" target="_blank" title="Wayson Lin">Wayson Lin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'wayson';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
